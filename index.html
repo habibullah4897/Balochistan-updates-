@@ -4,610 +4,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#073b32">
-<meta name="description" content="Balochistan Updates - بلوچستان کی خبریں اور معلومات">
-<title>Balochistan Updates | بلوچستان اپڈیٹس</title>
+<meta name="theme-color" content="#071b49">
+<meta name="description" content="Balochistan Updates - بلوچستان کی خبریں، اسمبلی، اضلاع اور سرکاری معلومات">
+<title>Balochistan Updates</title>
 
 <style>
-:root {
- --green:#073b32;
- --green2:#0b5a49;
- --gold:#e7b84b;
- --paper:#f4f7f5;
- --ink:#172521;
- --muted:#66736e;
- --line:#e4ebe7;
-}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- margin:0;background:var(--paper);color:var(--ink);
- font-family:Arial,"Noto Nastaliq Urdu","Noto Naskh Arabic",sans-serif;
- line-height:1.8
+ margin:0;
+ font-family:Arial,sans-serif;
+ color:#18243b;
+ background:linear-gradient(135deg,#fff0f5,#e6f5ff,#e9fff1,#fff7df);
+ line-height:1.9;
 }
-a{text-decoration:none;color:inherit}
-.topbar{background:#052b25;color:white;padding:8px 5%;font-size:13px}
-.topbar .inner,.head,.nav .inner,.wrap,.foot{max-width:1180px;margin:auto}
-.topbar .inner{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-header{background:var(--green);color:white;border-bottom:4px solid var(--gold)}
-.head{padding:20px 5%;display:flex;justify-content:space-between;align-items:center}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:55px;height:55px;border:2px solid var(--gold);border-radius:14px;display:grid;place-items:center;font-size:28px}
-.brand h1{font-size:clamp(22px,4vw,34px);margin:0;line-height:1.3}
-.brand p{margin:3px 0;color:#d5e7df;font-size:13px}
-.head-note{text-align:left;font-size:13px}
-.nav{background:var(--green2)}
-.nav .inner{padding:0 5%;display:flex;gap:5px;overflow:auto}
-.nav a{white-space:nowrap;color:white;padding:12px;font-size:14px}
-.nav a:hover{background:#ffffff20;color:#ffdf8a}
-.wrap{padding:20px 5%}
-.ticker{background:white;border-right:5px solid #e53935;padding:12px;border-radius:10px}
-.ticker b{background:#e53935;color:white;padding:4px 10px;border-radius:5px}
-.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:15px;margin-top:20px}
-.hero-main{min-height:280px;border-radius:16px;padding:25px;display:flex;flex-direction:column;justify-content:end;color:white;background:linear-gradient(135deg,#075b46,#183b70,#9a6a21)}
-.hero-main h2{font-size:30px}
-.hero-side{display:grid;gap:12px}
-.side-card,.notice{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}
-.side-card h3{margin:5px 0}
-.tag{background:var(--gold);color:#172521;border-radius:20px;padding:4px 12px;width:max-content;font-size:12px;font-weight:bold}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:30px 0 14px}
-.section-head h2{font-size:22px;margin:0;border-right:5px solid var(--gold);padding-right:10px}
-.section-head small{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+header{
+ background:linear-gradient(120deg,#071b49,#075e9b,#087e68,#5c287e);
+ color:white;text-align:center;padding:35px 12px;
+ border-bottom:6px solid #ffc928;
+}
+header h1{font-size:34px;margin:0;font-weight:900}
+header p{margin:5px}
+nav{
+ position:sticky;top:0;z-index:100;
+ display:flex;justify-content:center;flex-wrap:wrap;
+ background:linear-gradient(90deg,#071b49,#087e68,#762c8d);
+ box-shadow:0 3px 12px #0003;
+}
+nav a{
+ color:white;text-decoration:none;padding:12px;
+ font-weight:bold;font-size:14px;
+}
+nav a:hover{background:#ffc928;color:#071b49}
+.container{max-width:1150px;margin:auto;padding:14px}
+.hero{
+ background:linear-gradient(120deg,#e62e63,#8739bd,#1766bb);
+ color:white;text-align:center;padding:35px 15px;
+ border-radius:20px;margin:18px 0;
+ box-shadow:0 8px 20px #0002;
+}
+.hero h2{font-size:27px;margin:0;color:white}
+.hero p{font-size:17px}
 .card{
- background:white;border:2px solid var(--card-color,#ddd);
- border-radius:14px;overflow:hidden;
- box-shadow:0 4px 14px #0000000c;
+ background:white;padding:22px;margin:20px 0;
+ border-radius:17px;box-shadow:0 5px 18px #0002;
+ border-top:5px solid #087e68;
 }
-.card .thumb{height:115px;display:grid;place-items:center;font-size:38px;background:var(--card-bg,#edf3ef)}
-.card img{width:100%;height:160px;object-fit:cover}
-.card-body{padding:15px;background:var(--card-bg,#fff)}
-.card .cat{font-size:12px;font-weight:bold;color:var(--card-color,#08765a)}
-.card h3{font-size:19px;line-height:1.7;margin:7px 0;color:var(--card-color,#173e35)}
-.card p{font-size:14px;color:#34433c;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
-.meta{font-size:12px;color:#68766f;margin-top:10px}
-.districts{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.district{background:white;border:1px solid #b7d7ca;padding:12px;text-align:center;border-radius:10px;color:#08765a;font-weight:bold}
-.empty{padding:20px;background:white;border:1px dashed #b9c9c0;border-radius:12px;text-align:center;color:#66736e}
-.notice{margin-top:20px}
-footer{background:#052b25;color:white;margin-top:40px;padding:28px 5%}
-.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.foot strong{font-size:20px}
-.copy{border-top:1px solid #ffffff30;margin-top:20px;padding-top:15px;font-size:12px}
-.admin-wrap{background:white;border:2px solid #d9c17a;border-radius:14px;padding:18px;margin-top:30px}
-.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.admin-form .full{grid-column:1/-1}
-label{display:block;font-weight:bold;font-size:13px;margin-bottom:5px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #ccd8d1;border-radius:8px;font:inherit;background:white}
-textarea{min-height:130px}
-button{border:0;border-radius:8px;padding:12px 18px;background:#08765a;color:white;font:inherit;font-weight:bold;cursor:pointer}
-button:disabled{opacity:.5;cursor:wait}
-button.secondary{background:#53645b}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.status{font-size:14px;margin-top:12px;color:#08765a;white-space:pre-wrap;overflow-wrap:anywhere}
-.hidden{display:none!important}
-@media(max-width:760px){
- .hero{grid-template-columns:1fr}.head-note{display:none}
- .grid{grid-template-columns:1fr 1fr}
- .districts{grid-template-columns:repeat(3,1fr)}
+.card:nth-child(even){border-top-color:#e62e63}
+.card h2{color:#075e9b;margin-top:0}
+.grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:13px;
 }
-@media(max-width:480px){
- .grid{grid-template-columns:1fr}
- .admin-form{grid-template-columns:1fr}
- .admin-form .full{grid-column:auto}
- .districts{grid-template-columns:repeat(2,1fr)}
- .hero-main h2{font-size:24px}
+.item{
+ padding:17px;border-radius:13px;color:white;
+ font-weight:bold;text-align:center;
+ background:linear-gradient(135deg,#087e68,#075e9b);
+}
+.item:nth-child(2){background:linear-gradient(135deg,#e62e63,#9c328d)}
+.item:nth-child(3){background:linear-gradient(135deg,#d28b13,#d54c32)}
+.item:nth-child(4){background:linear-gradient(135deg,#5335a5,#1479ae)}
+.btn{
+ display:inline-block;padding:11px 19px;margin:6px;
+ color:white;text-decoration:none;border-radius:9px;
+ font-weight:bold;background:linear-gradient(90deg,#087e68,#075e9b);
+ border:0;cursor:pointer;
+}
+.facebook{background:#1877f2}
+.copy{
+ background:#e32727;color:white;border:0;border-radius:8px;
+ padding:9px 16px;font-weight:bold;cursor:pointer;
+}
+.notice{
+ background:#fff1c8;border-right:5px solid #e9a400;
+ padding:13px;border-radius:9px;
+}
+footer{
+ background:linear-gradient(120deg,#071b49,#087e68,#762c8d);
+ color:white;text-align:center;padding:28px 12px;margin-top:30px;
+}
+ul{padding-right:25px}
+a{overflow-wrap:anywhere}
+@media(max-width:600px){
+ header h1{font-size:25px}
+ nav a{padding:9px;font-size:12px}
+ .hero h2{font-size:22px}
+ .card{padding:16px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
- <div class="inner">
-  <span>بلوچستان، پاکستان کی خبریں اور معلومات</span>
-  <span>Urdu | English · غیرجانبدار معلوماتی پلیٹ فارم</span>
- </div>
-</div>
-
 <header>
- <div class="head">
-  <div class="brand">
-   <div class="logo">📰</div>
-   <div>
-    <h1>BALOCHISTAN UPDATES</h1>
-    <p>تازہ خبریں • مستند معلومات • عوامی آگاہی</p>
-   </div>
-  </div>
-  <div class="head-note">بلوچستان کی آواز، معلومات کے ساتھ<br>News · Assembly · Districts · Public Notices</div>
- </div>
+<h1>🌍 BALOCHISTAN UPDATES</h1>
+<p>بلوچستان کی خبریں اور معلومات</p>
+<p>NEWS • ASSEMBLY • DISTRICTS • PUBLIC INFORMATION</p>
+<strong>مستند معلومات — غیرجانبدار پلیٹ فارم</strong>
 </header>
 
-<nav class="nav">
- <div class="inner">
-  <a href="#">ہوم</a>
-  <a href="#latest">تازہ خبریں</a>
-  <a href="#assembly">اسمبلی</a>
-  <a href="#national">قومی اسمبلی و سینیٹ</a>
-  <a href="#districts">اضلاع</a>
-  <a href="#notices">سرکاری اعلانات</a>
-  <a href="#about">ہمارے بارے میں</a>
-  <a href="#admin">ایڈمن لاگ اِن</a>
- </div>
+<nav>
+<a href="#home">ہوم</a>
+<a href="#news">تازہ خبریں</a>
+<a href="#assembly">اسمبلی</a>
+<a href="#districts">اضلاع</a>
+<a href="#education">تعلیم</a>
+<a href="#health">صحت</a>
+<a href="#notices">سرکاری نوٹس</a>
+<a href="#about">تعارف</a>
+<a href="#contact">رابطہ</a>
 </nav>
 
-<main class="wrap">
+<div class="container">
 
-<div class="ticker">
- <b>اہم اطلاع</b>
- بلوچستان کی تازہ اور تصدیق شدہ خبریں۔ اشاعت سے پہلے ذریعہ اور تاریخ ضرور دیکھیں۔
+<section class="hero" id="home">
+<h2>بلوچستان کی آواز، معلومات کے ساتھ</h2>
+<p>تازہ خبریں، عوامی مسائل، اسمبلی کی کارروائیاں اور سرکاری اعلانات</p>
+<a class="btn facebook" href="https://www.facebook.com/share/19ghWbUs7c/" target="_blank">📘 ہمارا Facebook پیج</a>
+</section>
+
+<section class="card">
+<h2>⭐ ہماری ویب سائٹ پر خوش آمدید</h2>
+<div class="grid">
+<div class="item">📰 تازہ خبریں</div>
+<div class="item">🏛️ اسمبلی اپڈیٹس</div>
+<div class="item">📍 ضلعی خبریں</div>
+<div class="item">📢 سرکاری اعلانات</div>
+</div>
+</section>
+
+<section class="card" id="news">
+<h2>📰 تازہ خبریں</h2>
+<p>بلوچستان کی تازہ، اہم اور تصدیق شدہ خبریں یہاں شائع کی جائیں گی۔</p>
+<div class="notice">خبروں کی اشاعت سے پہلے متعلقہ ذرائع سے تصدیق ضروری ہے۔</div>
+</section>
+
+<section class="card" id="assembly">
+<h2>🏛️ اسمبلی اور پارلیمانی اپڈیٹس</h2>
+<ul>
+<li>بلوچستان اسمبلی کے اراکین کے بیانات اور تقاریر</li>
+<li>بلوچستان اسمبلی کے اجلاس اور کارروائیاں</li>
+<li>قومی اسمبلی میں بلوچستان کے منتخب اراکین کے بیانات</li>
+<li>سینیٹ میں بلوچستان کی نمائندگی اور تقاریر</li>
+<li>وزیراعلیٰ اور صوبائی وزراء کے اہم اعلانات</li>
+</ul>
+</section>
+
+<section class="card" id="districts">
+<h2>📍 بلوچستان کے اضلاع کی خبریں</h2>
+<div class="grid">
+<div class="item">لورالائی</div>
+<div class="item">دکی</div>
+<div class="item">بارکھان</div>
+<div class="item">رکھنی</div>
+<div class="item">موسیٰ خیل</div>
+<div class="item">ژوب</div>
+<div class="item">کوئٹہ</div>
+<div class="item">چمن</div>
+<div class="item">قلعہ عبداللہ</div>
+<div class="item">قلعہ سیف اللہ</div>
+</div>
+</section>
+
+<section class="card" id="education">
+<h2>🎓 محکمہ تعلیم</h2>
+<ul>
+<li>اساتذہ کے تبادلے اور تعیناتیاں</li>
+<li>تعلیمی اداروں کے سرکاری نوٹس</li>
+<li>اسکولوں اور کالجوں کی اپڈیٹس</li>
+<li>تعلیمی منصوبے اور فنڈز</li>
+<li>ملازمتوں کے اشتہارات</li>
+</ul>
+</section>
+
+<section class="card" id="health">
+<h2>🏥 محکمہ صحت</h2>
+<ul>
+<li>ڈاکٹروں کے تبادلے اور تعیناتیاں</li>
+<li>اسپتالوں کی اپڈیٹس</li>
+<li>صحت کے سرکاری نوٹس</li>
+<li>طبی سہولیات اور ادویات</li>
+<li>صحت کے منصوبے اور فنڈز</li>
+</ul>
+</section>
+
+<section class="card" id="notices">
+<h2>📢 سرکاری نوٹس اور عوامی معلومات</h2>
+<ul>
+<li>سرکاری ملازمتوں کے اشتہارات</li>
+<li>NADRA کے اہم اعلانات</li>
+<li>صوبائی بجٹ اور ترقیاتی منصوبے</li>
+<li>سرکاری محکموں کے نوٹیفکیشن</li>
+<li>عوامی سہولیات سے متعلق معلومات</li>
+</ul>
+</section>
+
+<section class="card" id="about">
+<h2>ℹ️ ہمارے بارے میں</h2>
+<p>
+Balochistan Updates ایک غیرجانبدار معلوماتی پلیٹ فارم ہے۔
+ہمارا مقصد بلوچستان کے عوام تک مستند خبریں، سرکاری معلومات،
+عوامی مسائل اور اہم اعلانات پہنچانا ہے۔
+</p>
+<p><strong>زبان:</strong> اردو اور English</p>
+<p><strong>مقصد:</strong> معلومات، آگاہی اور عوامی خدمت۔</p>
+</section>
+
+<section class="card" id="contact">
+<h2>📞 رابطہ اور سوشل میڈیا</h2>
+<p>اپنی خبر، تصویر، ویڈیو یا عوامی مسئلہ ہمارے ساتھ شیئر کریں۔</p>
+<a class="btn facebook" href="https://www.facebook.com/share/19ghWbUs7c/" target="_blank">Facebook پیج کھولیں</a>
+<button class="copy" onclick="copyLink()">🔴 Facebook لنک کاپی کریں</button>
+<p id="message"></p>
+</section>
+
 </div>
 
-<section class="hero">
- <div class="hero-main">
-  <span class="tag">BALOCHISTAN UPDATES</span>
-  <h2>بلوچستان کی تازہ خبریں، ایک ہی جگہ</h2>
-  <p>اسمبلی، سینیٹ، قومی اسمبلی، اضلاع اور عوامی اعلانات کی معلومات۔</p>
- </div>
- <div class="hero-side">
-  <article class="side-card">
-   <span class="tag">اسمبلی اپڈیٹس</span>
-   <h3>بلوچستان اسمبلی کے بیانات اور اجلاس</h3>
-   <p>اراکین کے بیانات، اجلاسوں اور قراردادوں کی خبریں۔</p>
-  </article>
-  <article class="side-card">
-   <span class="tag">ضلعی خبریں</span>
-   <h3>لورالائی سے گوادر تک</h3>
-   <p>اضلاع اور تحصیلوں کی مقامی خبریں اور اہم اطلاعات۔</p>
-  </article>
- </div>
-</section>
-
-<section id="latest">
- <div class="section-head"><h2>تازہ ترین خبریں</h2><small>Latest Updates</small></div>
- <div id="latestPosts" class="grid"><div class="empty">خبریں لوڈ ہو رہی ہیں…</div></div>
-</section>
-
-<section id="assembly">
- <div class="section-head"><h2>اسمبلی اور پارلیمانی اپڈیٹس</h2><small>Parliament</small></div>
- <div id="assemblyPosts" class="grid"><div class="empty">اسمبلی کی خبریں لوڈ ہو رہی ہیں…</div></div>
-</section>
-
-<section id="national">
- <div class="section-head"><h2>قومی اسمبلی و سینیٹ</h2><small>National Assembly & Senate</small></div>
- <div id="nationalPosts" class="grid"></div>
-</section>
-
-<section id="districts">
- <div class="section-head"><h2>اضلاع کی خبریں</h2><small>District Updates</small></div>
- <div class="districts">
-  <div class="district">کوئٹہ</div><div class="district">لورالائی</div>
-  <div class="district">دکی</div><div class="district">ژوب</div>
-  <div class="district">بارکھان</div><div class="district">موسیٰ خیل</div>
-  <div class="district">چمن</div><div class="district">قلعہ سیف اللہ</div>
-  <div class="district">قلعہ عبداللہ</div><div class="district">گوادر</div>
- </div>
- <div id="districtPosts" class="grid" style="margin-top:15px"></div>
-</section>
-
-<section id="notices" class="notice">
- <h3>سرکاری اعلانات اور عوامی نوٹس</h3>
- <p>صرف متعلقہ ادارے کے اصل نوٹیفکیشن یا قابلِ اعتماد ذریعے سے تصدیق شدہ اطلاع شائع کی جائے گی۔</p>
- <div id="noticePosts" class="grid" style="margin-top:14px"></div>
-</section>
-
-<section id="about">
- <div class="section-head"><h2>ہمارے بارے میں</h2><small>About Us</small></div>
- <div class="notice">
-  <h3>Balochistan Updates</h3>
-  <p>بلوچستان اپڈیٹس ایک غیرجانبدار معلوماتی پلیٹ فارم ہے جس کا مقصد بلوچستان سے متعلق خبریں، سرکاری اعلانات، پارلیمانی سرگرمیاں اور ضلعی معلومات اردو اور انگریزی میں قارئین تک پہنچانا ہے۔ ہر خبر کی اشاعت سے پہلے اس کے ذریعے اور تاریخ کی تصدیق ضروری ہے۔</p>
- </div>
-</section>
-
-<section id="admin" class="admin-wrap">
- <h2>ایڈمن پینل</h2>
-
- <div id="loginBox">
-  <p>صرف مجاز ایڈمن اپنے Firebase Email اور Password سے لاگ اِن کریں۔</p>
-  <div class="admin-form">
-   <div>
-    <label for="email">ای میل</label>
-    <input id="email" type="email" autocomplete="username" placeholder="Admin email">
-   </div>
-   <div>
-    <label for="password">پاس ورڈ</label>
-    <input id="password" type="password" autocomplete="current-password" placeholder="Password">
-   </div>
-  </div>
-  <div class="actions">
-   <button id="loginBtn" type="button">لاگ اِن</button>
-  </div>
- </div>
-
- <div id="panelBox" class="hidden">
-  <p id="adminWelcome">آپ ایڈمن کے طور پر لاگ اِن ہیں۔</p>
-  <h3>نئی خبر شائع کریں</h3>
-
-  <form id="postForm" class="admin-form">
-   <div>
-    <label for="postTitle">خبر کی سرخی</label>
-    <input id="postTitle" required maxlength="180" placeholder="خبر کا عنوان">
-   </div>
-
-   <div>
-    <label for="postCategory">قسم</label>
-    <select id="postCategory" required>
-     <option value="ضلعی خبر">ضلعی خبر</option>
-     <option value="بلوچستان اسمبلی">بلوچستان اسمبلی</option>
-     <option value="قومی اسمبلی">قومی اسمبلی</option>
-     <option value="سینیٹ">سینیٹ</option>
-     <option value="سرکاری اعلان">سرکاری اعلان</option>
-     <option value="دیگر">دیگر</option>
-    </select>
-   </div>
-
-   <div>
-    <label for="postDistrict">ضلع (اگر متعلقہ ہو)</label>
-    <input id="postDistrict" placeholder="مثلاً لورالائی">
-   </div>
-
-   <div>
-    <label for="postSource">خبر کا ذریعہ / لنک</label>
-    <input id="postSource" type="url" placeholder="https://...">
-   </div>
-
-   <div class="full">
-    <label for="postContent">خبر کی تفصیل</label>
-    <textarea id="postContent" required placeholder="خبر کی مکمل تفصیل یہاں لکھیں"></textarea>
-   </div>
-
-   <div class="full">
-    <label for="postImage">تصویر کا لنک (اختیاری)</label>
-    <input id="postImage" type="url" placeholder="https://...">
-   </div>
-
-   <div class="full actions">
-    <button id="publishBtn" type="submit">خبر شائع کریں</button>
-    <button id="logoutBtn" class="secondary" type="button">لاگ آؤٹ</button>
-   </div>
-  </form>
- </div>
-
- <div id="status" class="status" role="status"></div>
-</section>
-
-</main>
-
 <footer>
- <div class="foot">
-  <div><strong>BALOCHISTAN UPDATES</strong><p>تازہ خبریں • مستند معلومات • عوامی آگاہی</p></div>
-  <div><p>Urdu & English News Platform</p><p>بلوچستان، پاکستان</p></div>
- </div>
- <div class="copy">© 2026 Balochistan Updates. All rights reserved.</div>
+<h2>🌍 BALOCHISTAN UPDATES</h2>
+<p>بلوچستان کی آواز، معلومات کے ساتھ</p>
+<p>NEWS • INFORMATION • PUBLIC AWARENESS</p>
+<p>© 2026 Balochistan Updates. All Rights Reserved.</p>
 </footer>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-
-import {
- getAuth,
- signInWithEmailAndPassword,
- onAuthStateChanged,
- signOut
-} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-
-import {
- getFirestore,
- collection,
- addDoc,
- getDocs,
- query,
- where,
- doc,
- getDoc,
- serverTimestamp
-} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
-
-const firebaseConfig = {
- apiKey: "AIzaSyB-tnk46jWZ60in0j4jJPidsdVV64MZL7o",
- authDomain: "balochistan-updates.firebaseapp.com",
- projectId: "balochistan-updates",
- storageBucket: "balochistan-updates.firebasestorage.app",
- messagingSenderId: "162881382204",
- appId: "1:162881382204:web:75337562d3c05d44712039",
- measurementId: "G-WZ37DSTN93"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-/* اہم: آپ کا Database ID یہ ہے */
-const db = getFirestore(app, "balochistan-updates");
-
-const $ = id => document.getElementById(id);
-const status = message => $("status").textContent = message;
-
-const palettes = [
- ["#e53935","#fff0ef"],
- ["#1565c0","#eaf3ff"],
- ["#00897b","#e7f8f4"],
- ["#8e24aa","#f7edff"],
- ["#ef6c00","#fff2e5"],
- ["#3949ab","#eef0ff"],
- ["#2e7d32","#edf8ed"],
- ["#ad1457","#fff0f5"],
- ["#6d4c41","#f5efeb"],
- ["#0277bd","#eaf7ff"],
- ["#827717","#f8f8e7"],
- ["#4527a0","#f1edff"]
-];
-
-function safeText(value){
- return String(value ?? "");
+<script>
+function copyLink(){
+ const link="https://www.facebook.com/share/19ghWbUs7c/";
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(link).then(()=>{
+   document.getElementById("message").innerText="✅ لنک کاپی ہوگیا!";
+  }).catch(()=>fallback(link));
+ }else{fallback(link);}
 }
-
-function makeCard(post,index){
- const article=document.createElement("article");
- article.className="card";
-
- const colors=palettes[index % palettes.length];
- article.style.setProperty("--card-color",colors[0]);
- article.style.setProperty("--card-bg",colors[1]);
-
- if(post.imageUrl){
-  const img=document.createElement("img");
-  img.src=post.imageUrl;
-  img.alt="خبر کی تصویر";
-  img.loading="lazy";
-  img.onerror=()=>img.remove();
-  article.appendChild(img);
- }else{
-  const thumb=document.createElement("div");
-  thumb.className="thumb";
-  thumb.textContent="📰";
-  article.appendChild(thumb);
- }
-
- const body=document.createElement("div");
- body.className="card-body";
-
- const cat=document.createElement("span");
- cat.className="cat";
- cat.textContent=safeText(post.category);
-
- const title=document.createElement("h3");
- title.textContent=safeText(post.title);
-
- const content=document.createElement("p");
- content.textContent=safeText(post.content);
-
- body.append(cat,title,content);
-
- if(post.district){
-  const district=document.createElement("div");
-  district.className="meta";
-  district.textContent="ضلع: "+safeText(post.district);
-  body.appendChild(district);
- }
-
- if(post.sourceUrl){
-  const link=document.createElement("a");
-  link.href=post.sourceUrl;
-  link.target="_blank";
-  link.rel="noopener noreferrer";
-  link.textContent="خبر کا ذریعہ";
-  link.className="meta";
-  link.style.display="inline-block";
-  body.appendChild(link);
- }
-
- const meta=document.createElement("div");
- meta.className="meta";
- meta.textContent=post.createdAt?.toDate
-  ? post.createdAt.toDate().toLocaleString("ur-PK")
-  : "تازہ اپڈیٹ";
-
- body.appendChild(meta);
- article.appendChild(body);
- return article;
+function fallback(link){
+ const el=document.createElement("textarea");
+ el.value=link;
+ document.body.appendChild(el);
+ el.select();
+ document.execCommand("copy");
+ el.remove();
+ document.getElementById("message").innerText="✅ لنک کاپی ہوگیا!";
 }
-
-function fill(id,posts,emptyText){
- const box=$(id);
- box.replaceChildren();
-
- if(!posts.length){
-  const e=document.createElement("div");
-  e.className="empty";
-  e.textContent=emptyText;
-  box.appendChild(e);
-  return;
- }
-
- posts.forEach((post,index)=>{
-  box.appendChild(makeCard(post,index));
- });
-}
-
-async function loadPosts(){
- try{
-  const q=query(
-   collection(db,"posts"),
-   where("status","==","published")
-  );
-
-  const snap=await getDocs(q);
-
-  const posts=snap.docs.map(d=>({
-   id:d.id,
-   ...d.data()
-  }));
-
-  posts.sort((a,b)=>
-   (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)
-  );
-
-  fill("latestPosts",posts.slice(0,30),"ابھی کوئی خبر شائع نہیں ہوئی۔");
-
-  const assembly=posts.filter(p=>
-   p.category==="بلوچستان اسمبلی"
-  );
-
-  const national=posts.filter(p=>
-   ["قومی اسمبلی","سینیٹ"].includes(p.category)
-  );
-
-  const districts=posts.filter(p=>
-   p.district || p.category==="ضلعی خبر"
-  );
-
-  const notices=posts.filter(p=>
-   p.category==="سرکاری اعلان"
-  );
-
-  fill("assemblyPosts",assembly,"ابھی اسمبلی کی خبر موجود نہیں۔");
-  fill("nationalPosts",national,"ابھی قومی اسمبلی یا سینیٹ کی خبر موجود نہیں۔");
-  fill("districtPosts",districts,"ابھی ضلعی خبر موجود نہیں۔");
-  fill("noticePosts",notices,"ابھی کوئی سرکاری اعلان شائع نہیں ہوا۔");
-
- }catch(error){
-  console.error("LOAD POSTS ERROR:",error);
-
-  const msg="خبریں لوڈ نہیں ہو سکیں: "+error.message;
-
-  ["latestPosts","assemblyPosts","nationalPosts","districtPosts","noticePosts"]
-   .forEach(id=>fill(id,[],msg));
- }
-}
-
-/* Login */
-$("loginBtn").addEventListener("click",async()=>{
- const email=$("email").value.trim();
- const password=$("password").value;
-
- if(!email || !password){
-  status("براہِ کرم ای میل اور پاس ورڈ درج کریں۔");
-  return;
- }
-
- $("loginBtn").disabled=true;
- status("لاگ اِن ہو رہا ہے…");
-
- try{
-  await signInWithEmailAndPassword(auth,email,password);
-  status("لاگ اِن کامیاب۔ ایڈمن کی اجازت چیک ہو رہی ہے…");
- }catch(error){
-  console.error("LOGIN ERROR:",error);
-  status("لاگ اِن نہیں ہو سکا: "+error.code+" - "+error.message);
- }finally{
-  $("loginBtn").disabled=false;
- }
-});
-
-/* Admin permission check */
-onAuthStateChanged(auth,async user=>{
- if(!user){
-  $("loginBox").classList.remove("hidden");
-  $("panelBox").classList.add("hidden");
-  return;
- }
-
- status("ایڈمن کی اجازت چیک ہو رہی ہے…");
-
- try{
-  const adminSnap=await getDoc(
-   doc(db,"admins",user.uid)
-  );
-
-  if(!adminSnap.exists() || adminSnap.data().role!=="admin"){
-   status("اس اکاؤنٹ کو ایڈمن کی اجازت نہیں۔ UID یا admins Document چیک کریں۔");
-   await signOut(auth);
-   return;
-  }
-
-  $("loginBox").classList.add("hidden");
-  $("panelBox").classList.remove("hidden");
-
-  $("adminWelcome").textContent="ایڈمن لاگ اِن: "+user.email;
-
-  status("ایڈمن پینل تیار ہے۔ اب آپ خبر شائع کر سکتے ہیں۔");
-
- }catch(error){
-  console.error("ADMIN CHECK ERROR:",error);
-
-  status("ایڈمن کی اجازت چیک نہیں ہو سکی: "+error.code+" - "+error.message);
-
-  await signOut(auth);
- }
-});
-
-/* Logout */
-$("logoutBtn").addEventListener("click",async()=>{
- try{
-  await signOut(auth);
-  status("آپ لاگ آؤٹ ہو گئے ہیں۔");
- }catch(error){
-  status("لاگ آؤٹ میں مسئلہ: "+error.message);
- }
-});
-
-/* Publish post */
-$("postForm").addEventListener("submit",async event=>{
- event.preventDefault();
-
- const user=auth.currentUser;
-
- if(!user){
-  status("پہلے ایڈمن لاگ اِن کریں۔");
-  return;
- }
-
- const btn=$("publishBtn");
- btn.disabled=true;
- status("خبر محفوظ ہو رہی ہے…");
-
- try{
-  const adminSnap=await getDoc(
-   doc(db,"admins",user.uid)
-  );
-
-  if(!adminSnap.exists() || adminSnap.data().role!=="admin"){
-   throw new Error("Admin permission not found.");
-  }
-
-  const post={
-   title:$("postTitle").value.trim(),
-   category:$("postCategory").value,
-   district:$("postDistrict").value.trim(),
-   sourceUrl:$("postSource").value.trim(),
-   content:$("postContent").value.trim(),
-   imageUrl:$("postImage").value.trim(),
-   status:"published",
-   createdAt:serverTimestamp(),
-   authorUid:user.uid
-  };
-
-  if(!post.title || !post.content){
-   throw new Error("خبر کی سرخی اور تفصیل لازمی ہیں۔");
-  }
-
-  await addDoc(collection(db,"posts"),post);
-
-  $("postForm").reset();
-
-  status("خبر کامیابی سے شائع ہو گئی ہے۔");
-
-  await loadPosts();
-
- }catch(error){
-  console.error("PUBLISH ERROR:",error);
-  status("خبر شائع نہیں ہوئی: "+error.code+" - "+error.message);
- }finally{
-  btn.disabled=false;
- }
-});
-
-/* Load published news */
-loadPosts();
 </script>
 
 </body>
