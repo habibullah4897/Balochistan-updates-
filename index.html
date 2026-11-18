@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071b49">
-<meta name="description" content="Balochistan Updates - بلوچستان کی خبریں، اسمبلی، اضلاع اور سرکاری معلومات">
-<title>Balochistan Updates | بلوچستان اپڈیٹس</title>
+<meta name="description" content="Balochistan Updates - بلوچستان کی خبریں اور معلومات">
+<title>Balochistan Updates</title>
 
 <style>
 *{box-sizing:border-box}
@@ -18,8 +18,7 @@ header{
  background:linear-gradient(120deg,#071b49,#075985,#087f5b);
  color:white;text-align:center;padding:30px 15px
 }
-header h1{font-size:30px;margin:0}
-header p{margin:5px}
+header h1{font-size:28px;margin:0}
 nav{
  background:#092b50;padding:12px;display:flex;gap:9px;
  justify-content:center;flex-wrap:wrap;position:sticky;top:0;z-index:5
@@ -35,7 +34,7 @@ nav a:hover{background:#eab308;color:#111}
  border-radius:18px;padding:25px;text-align:center;
  border:2px solid #bfdbfe;margin:15px 0
 }
-.hero h2{color:#075985;margin-top:0}
+.hero h2{color:#075985}
 .section-title{
  background:linear-gradient(90deg,#082f49,#0f766e);
  color:white;padding:12px 17px;border-radius:12px;margin:25px 0 15px
@@ -50,14 +49,15 @@ nav a:hover{background:#eab308;color:#111}
 .post img{width:100%;max-height:350px;object-fit:cover;border-radius:10px;margin-top:10px}
 .meta{font-size:13px;color:#64748b}
 button,.btn{
- border:0;border-radius:8px;padding:10px 15px;
+ border:0;border-radius:8px;padding:11px 16px;
  cursor:pointer;font-weight:bold;text-decoration:none;display:inline-block
 }
+button:active{transform:scale(.98)}
+button:disabled{opacity:.6;cursor:not-allowed}
 .primary{background:#075985;color:white}
 .green{background:#087f5b;color:white}
 .red{background:#dc2626;color:white}
 .yellow{background:#facc15;color:#111}
-button:hover,.btn:hover{opacity:.85}
 input,textarea,select{
  width:100%;padding:12px;margin:7px 0 14px;
  border:1px solid #cbd5e1;border-radius:8px;font-size:15px;
@@ -66,13 +66,15 @@ input,textarea,select{
 textarea{min-height:120px}
 label{font-weight:bold}
 #adminPanel{display:none}
-.status{padding:12px;border-radius:9px;background:#e0f2fe;color:#075985;margin:12px 0}
+.status{
+ padding:12px;border-radius:9px;background:#e0f2fe;
+ color:#075985;margin:12px 0;overflow-wrap:anywhere
+}
 footer{
  background:#071b49;color:white;text-align:center;padding:25px;margin-top:35px
 }
 footer a{color:#facc15}
 .small{font-size:13px;color:#64748b}
-.hidden{display:none}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 </style>
@@ -84,7 +86,7 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
  <h1>بلوچستان اپڈیٹس</h1>
  <h1>BALOCHISTAN UPDATES</h1>
  <p>بلوچستان کی خبریں، معلومات اور عوامی آگاہی</p>
- <p>News • Information • Public Awareness</p>
+ <p>NEWS • INFORMATION • PUBLIC AWARENESS</p>
 </header>
 
 <nav>
@@ -95,19 +97,18 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
  <a href="#education">تعلیم</a>
  <a href="#health">صحت</a>
  <a href="#notices">سرکاری نوٹس</a>
- <a href="#about">ہمارے بارے میں</a>
- <a href="#admin">ایڈمن</a>
+ <a href="#about">تعارف</a>
+ <a href="#admin">Admin</a>
 </nav>
 
 <main class="container">
 
 <section id="home" class="hero">
- <h2>بلوچستان کی تازہ ترین معلومات</h2>
- <p>
- Balochistan Updates پر خوش آمدید۔ ہمارا مقصد بلوچستان کے عوام تک
- مستند خبریں، سرکاری اعلانات اور ضلعی معلومات پہنچانا ہے۔
- </p>
- <a class="btn green" href="https://www.facebook.com/share/19ghWbUs7c/" target="_blank">
+ <h2>بلوچستان کی آواز، معلومات کے ساتھ</h2>
+ <p>تازہ خبریں، عوامی مسائل، اسمبلی کی کارروائیاں اور سرکاری اعلانات</p>
+ <a class="btn green"
+ href="https://www.facebook.com/share/19ghWbUs7c/"
+ target="_blank" rel="noopener">
  ہمارا Facebook پیج دیکھیں
  </a>
 </section>
@@ -118,31 +119,20 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 
 <section id="news">
  <h2 class="section-title">📰 تازہ ترین خبریں / Latest News</h2>
- <div id="postsContainer">
-  <p>خبریں لوڈ ہو رہی ہیں...</p>
- </div>
+ <div id="postsContainer"><p>خبریں لوڈ ہو رہی ہیں...</p></div>
 </section>
 
 <section id="assembly">
- <h2 class="section-title">🏛️ اسمبلی اور پارلیمنٹ</h2>
+ <h2 class="section-title">🏛️ اسمبلی اور پارلیمانی اپڈیٹس</h2>
  <div class="grid">
-  <div class="card">
-   <h3>بلوچستان اسمبلی</h3>
-   <p>اسمبلی اجلاس، اراکین کے بیانات اور صوبائی اعلانات۔</p>
-  </div>
-  <div class="card">
-   <h3>قومی اسمبلی</h3>
-   <p>بلوچستان سے منتخب اراکین کی سرگرمیاں اور بیانات۔</p>
-  </div>
-  <div class="card">
-   <h3>سینیٹ</h3>
-   <p>بلوچستان کے سینیٹرز کے بیانات اور پارلیمانی معلومات۔</p>
-  </div>
+  <div class="card"><h3>بلوچستان اسمبلی</h3><p>اجلاس، اراکین کے بیانات اور صوبائی اعلانات۔</p></div>
+  <div class="card"><h3>قومی اسمبلی</h3><p>بلوچستان سے منتخب اراکین کی سرگرمیاں اور بیانات۔</p></div>
+  <div class="card"><h3>سینیٹ</h3><p>بلوچستان کے سینیٹرز کے بیانات اور پارلیمانی معلومات۔</p></div>
  </div>
 </section>
 
 <section id="districts">
- <h2 class="section-title">📍 اضلاع کی خبریں / District Updates</h2>
+ <h2 class="section-title">📍 بلوچستان کے اضلاع کی خبریں</h2>
  <div class="grid">
   <div class="card">لورالائی</div>
   <div class="card">دکی</div>
@@ -158,49 +148,58 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 </section>
 
 <section id="education">
- <h2 class="section-title">🎓 محکمہ تعلیم / Education</h2>
+ <h2 class="section-title">🎓 محکمہ تعلیم</h2>
  <div class="card">
-  <p>تعلیمی اداروں کے اعلانات، نوٹیفکیشن، بھرتیوں اور تبادلوں کی خبریں۔</p>
+  <p>تعلیمی اداروں کے اعلانات، نوٹیفکیشن، بھرتیوں، تبادلوں اور تعلیمی منصوبوں کی خبریں۔</p>
  </div>
 </section>
 
 <section id="health">
- <h2 class="section-title">🏥 محکمہ صحت / Health</h2>
+ <h2 class="section-title">🏥 محکمہ صحت</h2>
  <div class="card">
-  <p>ہسپتالوں، ڈاکٹروں، صحت کے منصوبوں، نوٹیفکیشن اور تبادلوں کی معلومات۔</p>
+  <p>ہسپتالوں، ڈاکٹروں، صحت کے منصوبوں، نوٹیفکیشن اور طبی سہولیات کی معلومات۔</p>
  </div>
 </section>
 
 <section id="notices">
- <h2 class="section-title">📢 سرکاری نوٹس / Government Notices</h2>
+ <h2 class="section-title">📢 سرکاری نوٹس اور عوامی معلومات</h2>
  <div class="card">
-  <p>صوبائی حکومت اور متعلقہ محکموں کے سرکاری اعلانات اور نوٹیفکیشن۔</p>
+  <p>سرکاری ملازمتوں کے اشتہارات، NADRA اعلانات، بجٹ، ترقیاتی منصوبے اور سرکاری نوٹیفکیشن۔</p>
  </div>
 </section>
 
 <section id="about">
- <h2 class="section-title">ℹ️ ہمارے بارے میں / About Us</h2>
+ <h2 class="section-title">ℹ️ ہمارے بارے میں</h2>
  <div class="card">
   <h3>Balochistan Updates</h3>
-  <p>
-  Balochistan Updates ایک غیر سیاسی معلوماتی پلیٹ فارم ہے۔
-  ہمارا مقصد بلوچستان کے عوام تک خبریں اور معلومات پہنچانا ہے۔
-  </p>
-  <p>ہم غیر مصدقہ خبروں کو حقیقت کے طور پر پیش کرنے سے گریز کرتے ہیں۔</p>
+  <p>ایک غیرجانبدار معلوماتی پلیٹ فارم۔ ہمارا مقصد بلوچستان کے عوام تک مستند خبریں، سرکاری معلومات اور عوامی مسائل پہنچانا ہے۔</p>
+  <p>زبان: اردو اور English</p>
+  <p>مقصد: معلومات، آگاہی اور عوامی خدمت۔</p>
+ </div>
+</section>
+
+<section id="contact">
+ <h2 class="section-title">📞 رابطہ اور سوشل میڈیا</h2>
+ <div class="card">
+  <p>اپنی خبر، تصویر، ویڈیو یا عوامی مسئلہ ہمارے ساتھ شیئر کریں۔</p>
+  <a class="btn red" href="https://www.facebook.com/share/19ghWbUs7c/"
+  target="_blank" rel="noopener">Facebook Page کھولیں</a>
  </div>
 </section>
 
 <section id="admin">
- <h2 class="section-title">🔐 ایڈمن پینل / Admin Panel</h2>
-
+ <h2 class="section-title">🔐 Admin Panel</h2>
  <div class="card">
+
   <div id="loginBox">
    <h3>Admin Login</h3>
    <label>Email</label>
-   <input type="email" id="adminEmail" placeholder="Admin Email">
+   <input type="email" id="adminEmail" placeholder="Admin Email" autocomplete="username">
+
    <label>Password</label>
-   <input type="password" id="adminPassword" placeholder="Password">
-   <button class="primary" onclick="adminLogin()">Login</button>
+   <input type="password" id="adminPassword" placeholder="Password" autocomplete="current-password">
+
+   <button type="button" class="primary" id="loginButton">Login</button>
    <p id="loginMessage" class="small"></p>
   </div>
 
@@ -234,16 +233,17 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
    <input id="postImage" type="url" placeholder="https://example.com/image.jpg">
 
    <div class="actions">
-    <button class="green" onclick="savePost()">خبر شائع کریں</button>
-    <button class="yellow" onclick="clearForm()">نئی پوسٹ</button>
+    <button type="button" class="green" id="publishButton">خبر شائع کریں</button>
+    <button type="button" class="yellow" id="clearButton">نئی پوسٹ</button>
    </div>
 
    <p id="adminMessage" class="small"></p>
    <hr>
    <h3>تمام پوسٹس / All Posts</h3>
    <div id="adminPosts">پوسٹس لوڈ ہو رہی ہیں...</div>
-   <button class="red" onclick="adminLogout()">Logout</button>
+   <button type="button" class="red" id="logoutButton">Logout</button>
   </div>
+
  </div>
 </section>
 
@@ -252,19 +252,19 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 <footer>
  <h2>BALOCHISTAN UPDATES</h2>
  <p>بلوچستان کی خبریں اور معلومات</p>
- <a href="https://www.facebook.com/share/19ghWbUs7c/" target="_blank">
-  Facebook Page
- </a>
- <p>© 2026 Balochistan Updates</p>
+ <a href="https://www.facebook.com/share/19ghWbUs7c/"
+ target="_blank" rel="noopener">Facebook Page</a>
+ <p>© 2026 Balochistan Updates. All Rights Reserved.</p>
 </footer>
 
-<!-- Firebase Libraries -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
-// Firebase Configuration
+"use strict";
+
+// Firebase Configuration — آپ کے Firebase Console سے
 const firebaseConfig = {
  apiKey: "AIzaSyB-tnk46jWZ60in0j4jJPidsdVV64MZL7o",
  authDomain: "balochistan-updates.firebaseapp.com",
@@ -275,58 +275,115 @@ const firebaseConfig = {
  measurementId: "G-WZ37DSTN93"
 };
 
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const postsRef = db.collection("posts");
-
 const ADMIN_UID = "3TVwxjA3YXQMR0Y7bVR5wuUX9tZ2";
 
+let auth = null;
+let db = null;
+let postsRef = null;
 let isAdmin = false;
 let editingPostId = null;
+let firebaseReady = false;
 
-const statusBox = document.getElementById("connectionStatus");
+const $ = id => document.getElementById(id);
 
-function showStatus(message, isError=false){
- statusBox.textContent = message;
- statusBox.style.background = isError ? "#fee2e2" : "#dcfce7";
- statusBox.style.color = isError ? "#991b1b" : "#166534";
+function showStatus(message,error=false){
+ $("connectionStatus").textContent = message;
+ $("connectionStatus").style.background = error ? "#fee2e2" : "#dcfce7";
+ $("connectionStatus").style.color = error ? "#991b1b" : "#166534";
 }
 
 function escapeHTML(value){
- return String(value ?? "").replace(/[&<>"']/g, function(char){
-  return {
-   "&":"&amp;",
-   "<":"&lt;",
-   ">":"&gt;",
-   '"':"&quot;",
-   "'":"&#039;"
-  }[char];
- });
+ return String(value ?? "").replace(/[&<>"']/g,char=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+ }[char]));
 }
 
 function formatDate(value){
- if(!value) return "تاریخ دستیاب نہیں";
  try{
-  const date = value.toDate ? value.toDate() : new Date(value);
+  const date = value && value.toDate ? value.toDate() : new Date(value);
+  if(isNaN(date.getTime())) return "تاریخ دستیاب نہیں";
   return date.toLocaleString("ur-PK");
- }catch(error){
+ }catch(e){
   return "تاریخ دستیاب نہیں";
  }
 }
 
-// Public: only published posts are loaded
+function safeImageUrl(value){
+ try{
+  const url = new URL(value);
+  return url.protocol === "https:" ? url.href : "";
+ }catch(e){
+  return "";
+ }
+}
+
+// بٹنوں کے Event Listeners
+$("loginButton").addEventListener("click",adminLogin);
+$("publishButton").addEventListener("click",savePost);
+$("clearButton").addEventListener("click",clearForm);
+$("logoutButton").addEventListener("click",adminLogout);
+
+$("adminPassword").addEventListener("keydown",e=>{
+ if(e.key === "Enter") adminLogin();
+});
+
+async function adminLogin(){
+ const message = $("loginMessage");
+ const email = $("adminEmail").value.trim();
+ const password = $("adminPassword").value;
+
+ if(!firebaseReady || !auth){
+  message.textContent = "Firebase ابھی تیار نہیں۔ صفحہ دوبارہ کھولیں۔";
+  return;
+ }
+
+ if(!email || !password){
+  message.textContent = "Email اور Password درج کریں۔";
+  return;
+ }
+
+ $("loginButton").disabled = true;
+ message.textContent = "Login ہو رہا ہے...";
+
+ try{
+  const result = await auth.signInWithEmailAndPassword(email,password);
+
+  if(result.user.uid !== ADMIN_UID){
+   await auth.signOut();
+   message.textContent = "یہ اکاؤنٹ مجاز Admin نہیں ہے۔";
+   return;
+  }
+
+  const adminDoc = await db.collection("admins").doc(result.user.uid).get();
+
+  if(!adminDoc.exists || adminDoc.data().role !== "admin"){
+   await auth.signOut();
+   message.textContent = "Admin اجازت موجود نہیں۔";
+   return;
+  }
+
+  isAdmin = true;
+  $("loginBox").style.display = "none";
+  $("adminPanel").style.display = "block";
+  message.textContent = "";
+  await loadAdminPosts();
+
+ }catch(error){
+  console.error("Login error:",error);
+  message.textContent = "Login Error: " + error.message;
+ }finally{
+  $("loginButton").disabled = false;
+ }
+}
+
 async function loadPublicPosts(){
- const container = document.getElementById("postsContainer");
+ const container = $("postsContainer");
  container.innerHTML = "<p>خبریں لوڈ ہو رہی ہیں...</p>";
 
  try{
-  const snapshot = await postsRef
-   .where("status","==","published")
-   .get();
-
+  const snapshot = await postsRef.where("status","==","published").get();
   const posts = [];
+
   snapshot.forEach(doc=>{
    posts.push({id:doc.id,...doc.data()});
   });
@@ -341,7 +398,7 @@ async function loadPublicPosts(){
   showStatus("Firebase سے رابطہ کامیاب ہے۔");
  }catch(error){
   console.error(error);
-  container.innerHTML = "<p>خبریں لوڈ نہیں ہو سکیں۔ Firebase Rules چیک کریں۔</p>";
+  container.textContent = "خبریں لوڈ نہیں ہو سکیں: " + error.message;
   showStatus("Firebase Error: "+error.message,true);
  }
 }
@@ -363,13 +420,12 @@ function renderPosts(posts,container,adminMode){
   const category = escapeHTML(post.category || "تازہ خبریں");
   const language = escapeHTML(post.language || "");
   const date = escapeHTML(formatDate(post.createdAt));
-  const status = escapeHTML(post.status || "status موجود نہیں");
+  const status = escapeHTML(post.status || "");
 
-  let imageHTML = "";
-  if(post.imageUrl){
-   const safeUrl = escapeHTML(post.imageUrl);
-   imageHTML = `<img src="${safeUrl}" alt="News image" loading="lazy" onerror="this.style.display='none'">`;
-  }
+  const imageUrl = safeImageUrl(post.imageUrl || "");
+  const imageHTML = imageUrl
+   ? `<img src="${escapeHTML(imageUrl)}" alt="News image" loading="lazy">`
+   : "";
 
   article.innerHTML = `
    <h3>${title}</h3>
@@ -377,41 +433,40 @@ function renderPosts(posts,container,adminMode){
    <p style="white-space:pre-wrap">${content}</p>
    ${imageHTML}
    <div class="actions">
-    <button class="primary copyBtn">Copy</button>
+    <button type="button" class="primary copyBtn">Copy</button>
    </div>
-   ${adminMode ? `<p class="meta">Status: ${status}</p>
-   <div class="actions">
-    <button class="yellow editBtn">Edit</button>
-    <button class="red deleteBtn">Delete</button>
-   </div>` : ""}
+   ${adminMode ? `
+    <p class="meta">Status: ${status}</p>
+    <div class="actions">
+     <button type="button" class="yellow editBtn">Edit</button>
+     <button type="button" class="red deleteBtn">Delete</button>
+    </div>` : ""}
   `;
 
-  article.querySelector(".copyBtn").addEventListener("click",()=>{
+  article.querySelector(".copyBtn").addEventListener("click",async()=>{
    const text = `${post.title || ""}\n\n${post.content || ""}\n\nBalochistan Updates`;
-   navigator.clipboard.writeText(text)
-    .then(()=>alert("پوسٹ کاپی ہوگئی"))
-    .catch(()=>alert("Copy نہیں ہو سکا۔"));
+   try{
+    await navigator.clipboard.writeText(text);
+    alert("پوسٹ کاپی ہوگئی۔");
+   }catch(e){
+    alert("Copy نہیں ہو سکا۔");
+   }
   });
 
   if(adminMode){
-   article.querySelector(".editBtn").addEventListener("click",()=>{
-    editPost(post);
-   });
-   article.querySelector(".deleteBtn").addEventListener("click",()=>{
-    deletePost(post.id);
-   });
+   article.querySelector(".editBtn").addEventListener("click",()=>editPost(post));
+   article.querySelector(".deleteBtn").addEventListener("click",()=>deletePost(post.id));
   }
 
   container.appendChild(article);
  });
 }
 
-// Admin: all posts are loaded after verified admin login
 async function loadAdminPosts(){
  if(!isAdmin) return;
 
- const container = document.getElementById("adminPosts");
- container.innerHTML = "پوسٹس لوڈ ہو رہی ہیں...";
+ const container = $("adminPosts");
+ container.textContent = "پوسٹس لوڈ ہو رہی ہیں...";
 
  try{
   const snapshot = await postsRef.get();
@@ -430,66 +485,31 @@ async function loadAdminPosts(){
   renderPosts(posts,container,true);
  }catch(error){
   console.error(error);
-  container.innerHTML = "Admin posts error: "+escapeHTML(error.message);
- }
-}
-
-async function adminLogin(){
- const email = document.getElementById("adminEmail").value.trim();
- const password = document.getElementById("adminPassword").value;
- const message = document.getElementById("loginMessage");
-
- if(!email || !password){
-  message.textContent = "Email اور Password درج کریں۔";
-  return;
- }
-
- message.textContent = "Login ہو رہا ہے...";
-
- try{
-  const result = await auth.signInWithEmailAndPassword(email,password);
-
-  if(result.user.uid !== ADMIN_UID){
-   await auth.signOut();
-   message.textContent = "یہ اکاؤنٹ مجاز Admin نہیں ہے۔";
-   return;
-  }
-
-  const adminDoc = await db.collection("admins").doc(result.user.uid).get();
-
-  if(!adminDoc.exists || adminDoc.data().role !== "admin"){
-   await auth.signOut();
-   message.textContent = "Admin اجازت موجود نہیں۔";
-   return;
-  }
-
-  isAdmin = true;
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("adminPanel").style.display = "block";
-  message.textContent = "";
-  await loadAdminPosts();
-
- }catch(error){
-  console.error(error);
-  message.textContent = "Login Error: "+error.message;
+  container.textContent = "Admin posts error: "+error.message;
  }
 }
 
 async function savePost(){
+ const message = $("adminMessage");
+
  if(!isAdmin){
-  alert("پہلے Admin Login کریں۔");
+  message.textContent = "پہلے Admin Login کریں۔";
   return;
  }
 
- const title = document.getElementById("postTitle").value.trim();
- const content = document.getElementById("postContent").value.trim();
- const category = document.getElementById("postCategory").value;
- const language = document.getElementById("postLanguage").value;
- const imageUrl = document.getElementById("postImage").value.trim();
- const message = document.getElementById("adminMessage");
+ const title = $("postTitle").value.trim();
+ const content = $("postContent").value.trim();
+ const category = $("postCategory").value;
+ const language = $("postLanguage").value;
+ const imageUrl = $("postImage").value.trim();
 
  if(!title || !content){
   message.textContent = "عنوان اور تفصیل لازمی درج کریں۔";
+  return;
+ }
+
+ if(imageUrl && !safeImageUrl(imageUrl)){
+  message.textContent = "تصویر کا درست HTTPS لنک درج کریں۔";
   return;
  }
 
@@ -499,9 +519,12 @@ async function savePost(){
   category,
   language,
   imageUrl,
-  status: "published",
-  updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  status:"published",
+  updatedAt:firebase.firestore.FieldValue.serverTimestamp()
  };
+
+ $("publishButton").disabled = true;
+ message.textContent = "خبر محفوظ ہو رہی ہے...";
 
  try{
   if(editingPostId){
@@ -509,6 +532,7 @@ async function savePost(){
    message.textContent = "پوسٹ کامیابی سے تبدیل ہوگئی۔";
   }else{
    data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+   data.authorUid = auth.currentUser.uid;
    await postsRef.add(data);
    message.textContent = "نئی خبر کامیابی سے شائع ہوگئی۔";
   }
@@ -520,26 +544,25 @@ async function savePost(){
  }catch(error){
   console.error(error);
   message.textContent = "Save Error: "+error.message;
+ }finally{
+  $("publishButton").disabled = false;
  }
 }
 
 function editPost(post){
- document.getElementById("postTitle").value = post.title || "";
- document.getElementById("postContent").value = post.content || "";
- document.getElementById("postCategory").value = post.category || "تازہ خبریں";
- document.getElementById("postLanguage").value = post.language || "Urdu";
- document.getElementById("postImage").value = post.imageUrl || "";
+ $("postTitle").value = post.title || "";
+ $("postContent").value = post.content || "";
+ $("postCategory").value = post.category || "تازہ خبریں";
+ $("postLanguage").value = post.language || "Urdu";
+ $("postImage").value = post.imageUrl || "";
 
  editingPostId = post.id;
- document.getElementById("adminMessage").textContent =
-  "آپ پوسٹ تبدیل کر رہے ہیں۔ تبدیلی کے لیے Publish بٹن دبائیں۔";
-
- document.getElementById("admin").scrollIntoView({behavior:"smooth"});
+ $("adminMessage").textContent = "آپ پوسٹ تبدیل کر رہے ہیں۔ تبدیلی کے لیے خبر شائع کریں دبائیں۔";
+ $("admin").scrollIntoView({behavior:"smooth"});
 }
 
 async function deletePost(id){
  if(!isAdmin) return;
-
  if(!confirm("کیا آپ واقعی یہ پوسٹ حذف کرنا چاہتے ہیں؟")) return;
 
  try{
@@ -554,46 +577,83 @@ async function deletePost(id){
 
 function clearForm(){
  editingPostId = null;
- document.getElementById("postTitle").value = "";
- document.getElementById("postContent").value = "";
- document.getElementById("postImage").value = "";
- document.getElementById("postCategory").value = "تازہ خبریں";
- document.getElementById("postLanguage").value = "Urdu";
+ $("postTitle").value = "";
+ $("postContent").value = "";
+ $("postImage").value = "";
+ $("postCategory").value = "تازہ خبریں";
+ $("postLanguage").value = "Urdu";
+ $("adminMessage").textContent = "";
 }
 
 async function adminLogout(){
- await auth.signOut();
+ try{
+  if(auth) await auth.signOut();
+ }catch(error){
+  console.error(error);
+ }
  isAdmin = false;
- document.getElementById("adminPanel").style.display = "none";
- document.getElementById("loginBox").style.display = "block";
- document.getElementById("adminPassword").value = "";
+ $("adminPanel").style.display = "none";
+ $("loginBox").style.display = "block";
+ $("adminPassword").value = "";
+ $("loginMessage").textContent = "آپ Logout ہوگئے ہیں۔";
 }
 
-auth.onAuthStateChanged(async user=>{
- if(user && user.uid === ADMIN_UID){
+// Firebase شروع کریں
+try{
+ if(typeof firebase === "undefined"){
+  throw new Error("Firebase SDK لوڈ نہیں ہوا۔ انٹرنیٹ چیک کریں۔");
+ }
+
+ firebase.initializeApp(firebaseConfig);
+ auth = firebase.auth();
+ db = firebase.firestore();
+ postsRef = db.collection("posts");
+ firebaseReady = true;
+
+ showStatus("Firebase سے رابطہ قائم ہو رہا ہے...");
+
+ auth.onAuthStateChanged(async user=>{
+  if(!user){
+   isAdmin = false;
+   $("adminPanel").style.display = "none";
+   $("loginBox").style.display = "block";
+   return;
+  }
+
+  if(user.uid !== ADMIN_UID){
+   isAdmin = false;
+   $("adminPanel").style.display = "none";
+   $("loginBox").style.display = "block";
+   return;
+  }
+
   try{
    const adminDoc = await db.collection("admins").doc(user.uid).get();
 
    if(adminDoc.exists && adminDoc.data().role === "admin"){
     isAdmin = true;
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("adminPanel").style.display = "block";
+    $("loginBox").style.display = "none";
+    $("adminPanel").style.display = "block";
     await loadAdminPosts();
    }else{
     isAdmin = false;
+    $("adminPanel").style.display = "none";
+    $("loginBox").style.display = "block";
    }
   }catch(error){
    console.error(error);
    showStatus("Admin verification error: "+error.message,true);
   }
- }else{
-  isAdmin = false;
-  document.getElementById("adminPanel").style.display = "none";
-  document.getElementById("loginBox").style.display = "block";
- }
-});
+ });
 
-loadPublicPosts();
+ loadPublicPosts();
+
+}catch(error){
+ console.error("Firebase initialization error:",error);
+ firebaseReady = false;
+ showStatus("Firebase شروع نہیں ہو سکا: "+error.message,true);
+ $("loginMessage").textContent = "Firebase Error: "+error.message;
+}
 </script>
 
 </body>
