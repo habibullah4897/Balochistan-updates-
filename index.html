@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10104b">
 <title>Balochistan Updates</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,"Noto Nastaliq Urdu",sans-serif;background:linear-gradient(135deg,#eef2ff,#ecfdf5,#fff7ed);color:#172033;line-height:1.9}
@@ -42,6 +43,7 @@ footer a{color:#facc15}
 hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -142,20 +144,26 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 
 <div id="loginBox">
 <h3>Admin Login</h3>
+
 <label>Email</label>
 <input type="email" id="adminEmail" placeholder="Admin Email" autocomplete="username">
+
 <label>Password</label>
 <input type="password" id="adminPassword" placeholder="Password" autocomplete="current-password">
+
 <button type="button" class="primary" id="loginButton">Login</button>
 <p id="loginMessage" class="small"></p>
 </div>
 
 <div id="adminPanel">
 <h3>خبر شائع کریں / Publish News</h3>
+
 <label>خبر کا عنوان / Title</label>
 <input id="postTitle" placeholder="خبر کا عنوان لکھیں">
+
 <label>خبر کی تفصیل / Content</label>
 <textarea id="postContent" placeholder="خبر کی مکمل تفصیل لکھیں"></textarea>
+
 <label>شعبہ / Category</label>
 <select id="postCategory">
 <option value="تازہ خبریں">تازہ خبریں</option>
@@ -164,26 +172,34 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 <option value="تعلیم">تعلیم</option>
 <option value="صحت">صحت</option>
 </select>
+
 <label>زبان / Language</label>
 <select id="postLanguage">
 <option value="Urdu">Urdu</option>
 <option value="English">English</option>
 <option value="Both">Urdu + English</option>
 </select>
+
 <label>تصویر کا لنک (اختیاری) / Image URL</label>
 <input id="postImage" type="url" placeholder="https://example.com/image.jpg">
+
 <div class="actions">
 <button type="button" class="green" id="publishButton">خبر شائع کریں</button>
 <button type="button" class="yellow" id="clearButton">نئی پوسٹ</button>
 </div>
+
 <p id="adminMessage" class="small"></p>
 <hr>
+
 <h3>تمام پوسٹس / All Posts</h3>
 <div id="adminPosts">پوسٹس لوڈ ہو رہی ہیں...</div>
+
 <button type="button" class="red" id="logoutButton">Logout</button>
 </div>
+
 </div>
 </section>
+
 </main>
 
 <footer>
@@ -193,11 +209,30 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:15px 0}
 <p>© 2026 Balochistan Updates. All Rights Reserved.</p>
 </footer>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-<script>
+import {
+ getAuth,
+ signInWithEmailAndPassword,
+ signOut,
+ onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+ getFirestore,
+ collection,
+ doc,
+ getDoc,
+ getDocs,
+ query,
+ where,
+ addDoc,
+ updateDoc,
+ deleteDoc,
+ serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 "use strict";
 
 const firebaseConfig = {
@@ -212,297 +247,383 @@ const firebaseConfig = {
 
 const ADMIN_UID = "3TVwxjA3YXQMR0Y7bVR5wuUX9tZ2";
 
-let auth=null,db=null,postsRef=null,isAdmin=false,editingPostId=null,firebaseReady=false;
-const $=id=>document.getElementById(id);
+const $ = id => document.getElementById(id);
+
+let app;
+let auth;
+let db;
+let postsRef;
+let isAdmin = false;
+let editingPostId = null;
 
 function showStatus(message,error=false){
- $("connectionStatus").textContent=message;
- $("connectionStatus").style.background=error?"#fee2e2":"#dcfce7";
- $("connectionStatus").style.color=error?"#991b1b":"#166534";
+ $("connectionStatus").textContent = message;
+ $("connectionStatus").style.background = error ? "#fee2e2" : "#dcfce7";
+ $("connectionStatus").style.color = error ? "#991b1b" : "#166534";
 }
 
 function escapeHTML(value){
- return String(value??"").replace(/[&<>"']/g,char=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+ return String(value ?? "").replace(/[&<>"']/g,char=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#039;"
  }[char]));
 }
 
 function formatDate(value){
  try{
-  const date=value&&value.toDate?value.toDate():new Date(value);
-  if(isNaN(date.getTime()))return "تاریخ دستیاب نہیں";
+  const date = value?.toDate ? value.toDate() : new Date(value);
+  if(isNaN(date.getTime())) return "تاریخ دستیاب نہیں";
   return date.toLocaleString("ur-PK");
- }catch(e){return "تاریخ دستیاب نہیں";}
+ }catch(error){
+  return "تاریخ دستیاب نہیں";
+ }
 }
 
 function safeImageUrl(value){
  try{
-  const url=new URL(value);
-  return url.protocol==="https:"?url.href:"";
- }catch(e){return "";}
+  const url = new URL(value);
+  return url.protocol === "https:" ? url.href : "";
+ }catch(error){
+  return "";
+ }
+}
+
+async function adminLogin(){
+ const message = $("loginMessage");
+ const email = $("adminEmail").value.trim();
+ const password = $("adminPassword").value;
+
+ if(!email || !password){
+  message.textContent = "Email اور Password درج کریں۔";
+  return;
+ }
+
+ $("loginButton").disabled = true;
+ message.textContent = "Login ہو رہا ہے...";
+
+ try{
+  await signInWithEmailAndPassword(auth,email,password);
+  message.textContent = "Login کامیاب، Admin کی تصدیق ہو رہی ہے...";
+ }catch(error){
+  console.error(error);
+  message.textContent = "Login Error: " + error.message;
+ }finally{
+  $("loginButton").disabled = false;
+ }
+}
+
+async function verifyAdmin(user){
+ if(!user){
+  isAdmin = false;
+  $("adminPanel").style.display = "none";
+  $("loginBox").style.display = "block";
+  return;
+ }
+
+ if(user.uid !== ADMIN_UID){
+  isAdmin = false;
+  $("adminPanel").style.display = "none";
+  $("loginBox").style.display = "block";
+  $("loginMessage").textContent = "یہ اکاؤنٹ مجاز Admin نہیں ہے۔";
+  await signOut(auth);
+  return;
+ }
+
+ try{
+  showStatus("Admin کی تصدیق ہو رہی ہے...");
+
+  const adminDoc = await getDoc(doc(db,"admins",user.uid));
+
+  if(!adminDoc.exists() || adminDoc.data().role !== "admin"){
+   isAdmin = false;
+   $("adminPanel").style.display = "none";
+   $("loginBox").style.display = "block";
+   $("loginMessage").textContent = "Admin اجازت موجود نہیں۔";
+   await signOut(auth);
+   return;
+  }
+
+  isAdmin = true;
+  $("loginBox").style.display = "none";
+  $("adminPanel").style.display = "block";
+  $("loginMessage").textContent = "";
+  $("adminMessage").textContent = "Admin Login کامیاب ہوگیا۔";
+
+  showStatus("Admin Login کامیاب ہے۔");
+  await loadAdminPosts();
+
+ }catch(error){
+  console.error(error);
+  isAdmin = false;
+  showStatus("Admin verification error: " + error.message,true);
+  $("loginMessage").textContent = "Admin Error: " + error.message;
+ }
+}
+
+async function loadPublicPosts(){
+ const container = $("postsContainer");
+ container.innerHTML = "<p>خبریں لوڈ ہو رہی ہیں...</p>";
+
+ try{
+  const q = query(postsRef,where("status","==","published"));
+  const snapshot = await getDocs(q);
+
+  const posts = [];
+  snapshot.forEach(item=>{
+   posts.push({id:item.id,...item.data()});
+  });
+
+  posts.sort((a,b)=>{
+   const da = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+   const dbb = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+   return dbb-da;
+  });
+
+  renderPosts(posts,container,false);
+  showStatus("Firebase سے رابطہ کامیاب ہے۔");
+
+ }catch(error){
+  console.error(error);
+  container.textContent = "خبریں لوڈ نہیں ہو سکیں: " + error.message;
+  showStatus("Firebase Error: " + error.message,true);
+ }
+}
+
+function renderPosts(posts,container,adminMode){
+ if(posts.length === 0){
+  container.innerHTML = "<p>ابھی کوئی پوسٹ موجود نہیں۔</p>";
+  return;
+ }
+
+ container.innerHTML = "";
+
+ posts.forEach(post=>{
+  const article = document.createElement("article");
+  article.className = "card post";
+
+  const title = escapeHTML(post.title || "بغیر عنوان");
+  const content = escapeHTML(post.content || "");
+  const category = escapeHTML(post.category || "تازہ خبریں");
+  const language = escapeHTML(post.language || "");
+  const date = escapeHTML(formatDate(post.createdAt));
+  const status = escapeHTML(post.status || "");
+  const imageUrl = safeImageUrl(post.imageUrl || "");
+
+  const imageHTML = imageUrl
+   ? `<img src="${escapeHTML(imageUrl)}" alt="News image" loading="lazy">`
+   : "";
+
+  article.innerHTML = `
+   <h3>${title}</h3>
+   <div class="meta">${category} | ${language} | ${date}</div>
+   <p style="white-space:pre-wrap">${content}</p>
+   ${imageHTML}
+   <div class="actions">
+    <button type="button" class="primary copyBtn">Copy</button>
+   </div>
+   ${adminMode ? `
+    <p class="meta">Status: ${status}</p>
+    <div class="actions">
+     <button type="button" class="yellow editBtn">Edit</button>
+     <button type="button" class="red deleteBtn">Delete</button>
+    </div>
+   ` : ""}
+  `;
+
+  article.querySelector(".copyBtn").addEventListener("click",async()=>{
+   const text = `${post.title || ""}\n\n${post.content || ""}\n\nBalochistan Updates`;
+   try{
+    await navigator.clipboard.writeText(text);
+    alert("پوسٹ کاپی ہوگئی۔");
+   }catch(error){
+    alert("Copy نہیں ہو سکا۔");
+   }
+  });
+
+  if(adminMode){
+   article.querySelector(".editBtn").addEventListener("click",()=>editPost(post));
+   article.querySelector(".deleteBtn").addEventListener("click",()=>deletePost(post.id));
+  }
+
+  container.appendChild(article);
+ });
+}
+
+async function loadAdminPosts(){
+ if(!isAdmin) return;
+
+ const container = $("adminPosts");
+ container.textContent = "پوسٹس لوڈ ہو رہی ہیں...";
+
+ try{
+  const snapshot = await getDocs(postsRef);
+  const posts = [];
+
+  snapshot.forEach(item=>{
+   posts.push({id:item.id,...item.data()});
+  });
+
+  posts.sort((a,b)=>{
+   const da = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+   const dbb = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+   return dbb-da;
+  });
+
+  renderPosts(posts,container,true);
+
+ }catch(error){
+  console.error(error);
+  container.textContent = "Admin posts error: " + error.message;
+ }
+}
+
+async function savePost(){
+ const message = $("adminMessage");
+
+ if(!isAdmin){
+  message.textContent = "پہلے Admin Login کریں۔";
+  return;
+ }
+
+ const title = $("postTitle").value.trim();
+ const content = $("postContent").value.trim();
+ const category = $("postCategory").value;
+ const language = $("postLanguage").value;
+ const imageUrl = $("postImage").value.trim();
+
+ if(!title || !content){
+  message.textContent = "عنوان اور تفصیل لازمی درج کریں۔";
+  return;
+ }
+
+ if(imageUrl && !safeImageUrl(imageUrl)){
+  message.textContent = "تصویر کا درست HTTPS لنک درج کریں۔";
+  return;
+ }
+
+ const data = {
+  title,
+  content,
+  category,
+  language,
+  imageUrl,
+  status:"published",
+  updatedAt:serverTimestamp()
+ };
+
+ $("publishButton").disabled = true;
+ message.textContent = "خبر محفوظ ہو رہی ہے...";
+
+ try{
+  if(editingPostId){
+   await updateDoc(doc(db,"posts",editingPostId),data);
+   message.textContent = "پوسٹ کامیابی سے تبدیل ہوگئی۔";
+  }else{
+   data.createdAt = serverTimestamp();
+   data.authorUid = auth.currentUser.uid;
+   await addDoc(postsRef,data);
+   message.textContent = "نئی خبر کامیابی سے شائع ہوگئی۔";
+  }
+
+  clearForm();
+  await loadAdminPosts();
+  await loadPublicPosts();
+
+ }catch(error){
+  console.error(error);
+  message.textContent = "Save Error: " + error.message;
+ }finally{
+  $("publishButton").disabled = false;
+ }
+}
+
+function editPost(post){
+ $("postTitle").value = post.title || "";
+ $("postContent").value = post.content || "";
+ $("postCategory").value = post.category || "تازہ خبریں";
+ $("postLanguage").value = post.language || "Urdu";
+ $("postImage").value = post.imageUrl || "";
+
+ editingPostId = post.id;
+
+ $("adminMessage").textContent = "آپ پوسٹ تبدیل کر رہے ہیں۔ تبدیلی کے لیے خبر شائع کریں دبائیں۔";
+ $("admin").scrollIntoView({behavior:"smooth"});
+}
+
+async function deletePost(id){
+ if(!isAdmin) return;
+
+ if(!confirm("کیا آپ واقعی یہ پوسٹ حذف کرنا چاہتے ہیں؟")) return;
+
+ try{
+  await deleteDoc(doc(db,"posts",id));
+  alert("پوسٹ حذف ہوگئی۔");
+  await loadAdminPosts();
+  await loadPublicPosts();
+ }catch(error){
+  alert("Delete Error: " + error.message);
+ }
+}
+
+function clearForm(){
+ editingPostId = null;
+ $("postTitle").value = "";
+ $("postContent").value = "";
+ $("postImage").value = "";
+ $("postCategory").value = "تازہ خبریں";
+ $("postLanguage").value = "Urdu";
+ $("adminMessage").textContent = "";
+}
+
+async function adminLogout(){
+ try{
+  await signOut(auth);
+  isAdmin = false;
+  $("adminPanel").style.display = "none";
+  $("loginBox").style.display = "block";
+  $("adminPassword").value = "";
+  $("loginMessage").textContent = "آپ Logout ہوگئے ہیں۔";
+ }catch(error){
+  $("loginMessage").textContent = "Logout Error: " + error.message;
+ }
 }
 
 $("loginButton").addEventListener("click",adminLogin);
 $("publishButton").addEventListener("click",savePost);
 $("clearButton").addEventListener("click",clearForm);
 $("logoutButton").addEventListener("click",adminLogout);
-$("adminPassword").addEventListener("keydown",e=>{
- if(e.key==="Enter")adminLogin();
+
+$("adminPassword").addEventListener("keydown",event=>{
+ if(event.key === "Enter") adminLogin();
 });
 
-async function adminLogin(){
- const message=$("loginMessage");
- const email=$("adminEmail").value.trim();
- const password=$("adminPassword").value;
- if(!firebaseReady||!auth){
-  message.textContent="Firebase ابھی تیار نہیں۔ صفحہ دوبارہ کھولیں۔";
-  return;
- }
- if(!email||!password){
-  message.textContent="Email اور Password درج کریں۔";
-  return;
- }
- $("loginButton").disabled=true;
- message.textContent="Login ہو رہا ہے...";
- try{
-  const result=await auth.signInWithEmailAndPassword(email,password);
-  if(result.user.uid!==ADMIN_UID){
-   await auth.signOut();
-   message.textContent="یہ اکاؤنٹ مجاز Admin نہیں ہے۔";
-   return;
-  }
-  const adminDoc=await db.collection("admins").doc(result.user.uid).get();
-  if(!adminDoc.exists||adminDoc.data().role!=="admin"){
-   await auth.signOut();
-   message.textContent="Admin اجازت موجود نہیں۔";
-   return;
-  }
-  isAdmin=true;
-  $("loginBox").style.display="none";
-  $("adminPanel").style.display="block";
-  message.textContent="";
-  await loadAdminPosts();
- }catch(error){
-  console.error(error);
-  message.textContent="Login Error: "+error.message;
- }finally{$("loginButton").disabled=false;}
-}
-
-async function loadPublicPosts(){
- const container=$("postsContainer");
- container.innerHTML="<p>خبریں لوڈ ہو رہی ہیں...</p>";
- try{
-  const snapshot=await postsRef.where("status","==","published").get();
-  const posts=[];
-  snapshot.forEach(doc=>posts.push({id:doc.id,...doc.data()}));
-  posts.sort((a,b)=>{
-   const da=a.createdAt?.toMillis?a.createdAt.toMillis():0;
-   const dbb=b.createdAt?.toMillis?b.createdAt.toMillis():0;
-   return dbb-da;
-  });
-  renderPosts(posts,container,false);
-  showStatus("Firebase سے رابطہ کامیاب ہے۔");
- }catch(error){
-  console.error(error);
-  container.textContent="خبریں لوڈ نہیں ہو سکیں: "+error.message;
-  showStatus("Firebase Error: "+error.message,true);
- }
-}
-
-function renderPosts(posts,container,adminMode){
- if(posts.length===0){
-  container.innerHTML="<p>ابھی کوئی پوسٹ موجود نہیں۔</p>";
-  return;
- }
- container.innerHTML="";
- posts.forEach(post=>{
-  const article=document.createElement("article");
-  article.className="card post";
-  const title=escapeHTML(post.title||"بغیر عنوان");
-  const content=escapeHTML(post.content||"");
-  const category=escapeHTML(post.category||"تازہ خبریں");
-  const language=escapeHTML(post.language||"");
-  const date=escapeHTML(formatDate(post.createdAt));
-  const status=escapeHTML(post.status||"");
-  const imageUrl=safeImageUrl(post.imageUrl||"");
-  const imageHTML=imageUrl?`<img src="${escapeHTML(imageUrl)}" alt="News image" loading="lazy">`:"";
-  article.innerHTML=`
-   <h3>${title}</h3>
-   <div class="meta">${category} | ${language} | ${date}</div>
-   <p style="white-space:pre-wrap">${content}</p>
-   ${imageHTML}
-   <div class="actions"><button type="button" class="primary copyBtn">Copy</button></div>
-   ${adminMode?`
-   <p class="meta">Status: ${status}</p>
-   <div class="actions">
-   <button type="button" class="yellow editBtn">Edit</button>
-   <button type="button" class="red deleteBtn">Delete</button>
-   </div>`:""}
-  `;
-  article.querySelector(".copyBtn").addEventListener("click",async()=>{
-   const text=`${post.title||""}\n\n${post.content||""}\n\nBalochistan Updates`;
-   try{
-    await navigator.clipboard.writeText(text);
-    alert("پوسٹ کاپی ہوگئی۔");
-   }catch(e){alert("Copy نہیں ہو سکا۔");}
-  });
-  if(adminMode){
-   article.querySelector(".editBtn").addEventListener("click",()=>editPost(post));
-   article.querySelector(".deleteBtn").addEventListener("click",()=>deletePost(post.id));
-  }
-  container.appendChild(article);
- });
-}
-
-async function loadAdminPosts(){
- if(!isAdmin)return;
- const container=$("adminPosts");
- container.textContent="پوسٹس لوڈ ہو رہی ہیں...";
- try{
-  const snapshot=await postsRef.get();
-  const posts=[];
-  snapshot.forEach(doc=>posts.push({id:doc.id,...doc.data()}));
-  posts.sort((a,b)=>{
-   const da=a.createdAt?.toMillis?a.createdAt.toMillis():0;
-   const dbb=b.createdAt?.toMillis?b.createdAt.toMillis():0;
-   return dbb-da;
-  });
-  renderPosts(posts,container,true);
- }catch(error){
-  console.error(error);
-  container.textContent="Admin posts error: "+error.message;
- }
-}
-
-async function savePost(){
- const message=$("adminMessage");
- if(!isAdmin){message.textContent="پہلے Admin Login کریں۔";return;}
- const title=$("postTitle").value.trim();
- const content=$("postContent").value.trim();
- const category=$("postCategory").value;
- const language=$("postLanguage").value;
- const imageUrl=$("postImage").value.trim();
- if(!title||!content){
-  message.textContent="عنوان اور تفصیل لازمی درج کریں۔";
-  return;
- }
- if(imageUrl&&!safeImageUrl(imageUrl)){
-  message.textContent="تصویر کا درست HTTPS لنک درج کریں۔";
-  return;
- }
- const data={
-  title,content,category,language,imageUrl,status:"published",
-  updatedAt:firebase.firestore.FieldValue.serverTimestamp()
- };
- $("publishButton").disabled=true;
- message.textContent="خبر محفوظ ہو رہی ہے...";
- try{
-  if(editingPostId){
-   await postsRef.doc(editingPostId).update(data);
-   message.textContent="پوسٹ کامیابی سے تبدیل ہوگئی۔";
-  }else{
-   data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
-   data.authorUid=auth.currentUser.uid;
-   await postsRef.add(data);
-   message.textContent="نئی خبر کامیابی سے شائع ہوگئی۔";
-  }
-  clearForm();
-  await loadAdminPosts();
-  await loadPublicPosts();
- }catch(error){
-  console.error(error);
-  message.textContent="Save Error: "+error.message;
- }finally{$("publishButton").disabled=false;}
-}
-
-function editPost(post){
- $("postTitle").value=post.title||"";
- $("postContent").value=post.content||"";
- $("postCategory").value=post.category||"تازہ خبریں";
- $("postLanguage").value=post.language||"Urdu";
- $("postImage").value=post.imageUrl||"";
- editingPostId=post.id;
- $("adminMessage").textContent="آپ پوسٹ تبدیل کر رہے ہیں۔ تبدیلی کے لیے خبر شائع کریں دبائیں۔";
- $("admin").scrollIntoView({behavior:"smooth"});
-}
-
-async function deletePost(id){
- if(!isAdmin)return;
- if(!confirm("کیا آپ واقعی یہ پوسٹ حذف کرنا چاہتے ہیں؟"))return;
- try{
-  await postsRef.doc(id).delete();
-  alert("پوسٹ حذف ہوگئی۔");
-  await loadAdminPosts();
-  await loadPublicPosts();
- }catch(error){alert("Delete Error: "+error.message);}
-}
-
-function clearForm(){
- editingPostId=null;
- $("postTitle").value="";
- $("postContent").value="";
- $("postImage").value="";
- $("postCategory").value="تازہ خبریں";
- $("postLanguage").value="Urdu";
- $("adminMessage").textContent="";
-}
-
-async function adminLogout(){
- try{if(auth)await auth.signOut();}
- catch(error){console.error(error);}
- isAdmin=false;
- $("adminPanel").style.display="none";
- $("loginBox").style.display="block";
- $("adminPassword").value="";
- $("loginMessage").textContent="آپ Logout ہوگئے ہیں۔";
-}
-
 try{
- if(typeof firebase==="undefined")throw new Error("Firebase SDK لوڈ نہیں ہوا۔");
- if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
- auth=firebase.auth();
- db=firebase.firestore();
- postsRef=db.collection("posts");
- firebaseReady=true;
+ app = initializeApp(firebaseConfig);
+ auth = getAuth(app);
+
+ // اہم: آپ کے named Firestore database سے کنکشن
+ db = getFirestore(app,"balochistan-updates");
+
+ postsRef = collection(db,"posts");
+
  showStatus("Firebase سے رابطہ قائم ہو رہا ہے...");
- auth.onAuthStateChanged(async user=>{
-  if(!user){
-   isAdmin=false;
-   $("adminPanel").style.display="none";
-   $("loginBox").style.display="block";
-   return;
-  }
-  if(user.uid!==ADMIN_UID){
-   isAdmin=false;
-   $("adminPanel").style.display="none";
-   $("loginBox").style.display="block";
-   return;
-  }
-  try{
-   const adminDoc=await db.collection("admins").doc(user.uid).get();
-   if(adminDoc.exists&&adminDoc.data().role==="admin"){
-    isAdmin=true;
-    $("loginBox").style.display="none";
-    $("adminPanel").style.display="block";
-    await loadAdminPosts();
-   }else{
-    isAdmin=false;
-    $("adminPanel").style.display="none";
-    $("loginBox").style.display="block";
-   }
-  }catch(error){
-   console.error(error);
-   showStatus("Admin verification error: "+error.message,true);
-  }
+
+ onAuthStateChanged(auth,async user=>{
+  await verifyAdmin(user);
  });
+
  loadPublicPosts();
+
 }catch(error){
  console.error(error);
- firebaseReady=false;
- showStatus("Firebase شروع نہیں ہو سکا: "+error.message,true);
- $("loginMessage").textContent="Firebase Error: "+error.message;
+ showStatus("Firebase شروع نہیں ہو سکا: " + error.message,true);
+ $("loginMessage").textContent = "Firebase Error: " + error.message;
 }
 </script>
+
 </body>
  </html>
  
