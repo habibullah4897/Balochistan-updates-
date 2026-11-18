@@ -12,9 +12,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
- margin:0;
- font-family:Arial,sans-serif;
- color:#18243b;
+ margin:0;font-family:Arial,sans-serif;color:#18243b;
  background:linear-gradient(135deg,#fff0f5,#e6f5ff,#e9fff1,#fff7df);
  line-height:1.9;
 }
@@ -31,24 +29,19 @@ nav{
  background:linear-gradient(90deg,#071b49,#087e68,#762c8d);
  box-shadow:0 3px 12px #0003;
 }
-nav a{
- color:white;text-decoration:none;padding:12px;
- font-weight:bold;font-size:14px;
-}
+nav a{color:white;text-decoration:none;padding:12px;font-weight:bold;font-size:14px}
 nav a:hover{background:#ffc928;color:#071b49}
 .container{max-width:1150px;margin:auto;padding:14px}
 .hero{
  background:linear-gradient(120deg,#e62e63,#8739bd,#1766bb);
  color:white;text-align:center;padding:35px 15px;
- border-radius:20px;margin:18px 0;
- box-shadow:0 8px 20px #0002;
+ border-radius:20px;margin:18px 0;box-shadow:0 8px 20px #0002;
 }
 .hero h2{font-size:27px;margin:0;color:white}
 .hero p{font-size:17px}
 .card{
- background:white;padding:22px;margin:20px 0;
- border-radius:17px;box-shadow:0 5px 18px #0002;
- border-top:5px solid #087e68;
+ background:white;padding:22px;margin:20px 0;border-radius:17px;
+ box-shadow:0 5px 18px #0002;border-top:5px solid #087e68;
 }
 .card:nth-child(even){border-top-color:#e62e63}
 .card h2{color:#075e9b;margin-top:0}
@@ -57,34 +50,48 @@ nav a:hover{background:#ffc928;color:#071b49}
  gap:13px;
 }
 .item{
- padding:17px;border-radius:13px;color:white;
- font-weight:bold;text-align:center;
- background:linear-gradient(135deg,#087e68,#075e9b);
+ padding:17px;border-radius:13px;color:white;font-weight:bold;
+ text-align:center;background:linear-gradient(135deg,#087e68,#075e9b);
 }
 .item:nth-child(2){background:linear-gradient(135deg,#e62e63,#9c328d)}
 .item:nth-child(3){background:linear-gradient(135deg,#d28b13,#d54c32)}
 .item:nth-child(4){background:linear-gradient(135deg,#5335a5,#1479ae)}
 .btn{
- display:inline-block;padding:11px 19px;margin:6px;
- color:white;text-decoration:none;border-radius:9px;
- font-weight:bold;background:linear-gradient(90deg,#087e68,#075e9b);
+ display:inline-block;padding:11px 19px;margin:6px;color:white;
+ text-decoration:none;border-radius:9px;font-weight:bold;
+ background:linear-gradient(90deg,#087e68,#075e9b);
  border:0;cursor:pointer;
 }
 .facebook{background:#1877f2}
-.copy{
- background:#e32727;color:white;border:0;border-radius:8px;
- padding:9px 16px;font-weight:bold;cursor:pointer;
-}
-.notice{
- background:#fff1c8;border-right:5px solid #e9a400;
- padding:13px;border-radius:9px;
-}
+.copy{background:#e32727;color:white;border:0;border-radius:8px;padding:9px 16px;font-weight:bold;cursor:pointer}
+.notice{background:#fff1c8;border-right:5px solid #e9a400;padding:13px;border-radius:9px}
 footer{
  background:linear-gradient(120deg,#071b49,#087e68,#762c8d);
  color:white;text-align:center;padding:28px 12px;margin-top:30px;
 }
 ul{padding-right:25px}
 a{overflow-wrap:anywhere}
+input,textarea,select{
+ width:100%;padding:12px;margin:7px 0 14px;
+ border:1px solid #ccc;border-radius:8px;font-size:15px;
+ font-family:Arial;
+}
+textarea{min-height:140px;resize:vertical}
+label{font-weight:bold;color:#075e9b}
+.post{
+ background:white;border-radius:13px;padding:18px;margin:15px 0;
+ border-right:5px solid #e62e63;box-shadow:0 4px 12px #0001;
+ overflow-wrap:anywhere;
+}
+.post h3{color:#075e9b;margin-top:0}
+.post-meta{font-size:12px;color:#777}
+.post-content{white-space:pre-wrap}
+.post-image{width:100%;max-height:400px;object-fit:contain;border-radius:10px;margin:10px 0}
+.status{padding:11px;margin:10px 0;border-radius:8px;background:#e8f5ff}
+.hidden{display:none!important}
+.admin-actions{display:flex;flex-wrap:wrap;gap:6px}
+.small{font-size:12px;color:#777}
+footer a{color:white}
 @media(max-width:600px){
  header h1{font-size:25px}
  nav a{padding:9px;font-size:12px}
@@ -113,6 +120,7 @@ a{overflow-wrap:anywhere}
 <a href="#notices">سرکاری نوٹس</a>
 <a href="#about">تعارف</a>
 <a href="#contact">رابطہ</a>
+<a href="#admin">Admin</a>
 </nav>
 
 <div class="container">
@@ -133,10 +141,16 @@ a{overflow-wrap:anywhere}
 </div>
 </section>
 
+<!-- FIREBASE NEWS SECTION -->
 <section class="card" id="news">
 <h2>📰 تازہ خبریں</h2>
-<p>بلوچستان کی تازہ، اہم اور تصدیق شدہ خبریں یہاں شائع کی جائیں گی۔</p>
-<div class="notice">خبروں کی اشاعت سے پہلے متعلقہ ذرائع سے تصدیق ضروری ہے۔</div>
+<div class="notice">
+بلوچستان کی تازہ، اہم اور تصدیق شدہ خبریں یہاں شائع کی جاتی ہیں۔
+</div>
+<div id="connection" class="status">Firebase سے رابطہ ہو رہا ہے...</div>
+<div id="posts">
+<p>خبریں لوڈ ہو رہی ہیں...</p>
+</div>
 </section>
 
 <section class="card" id="assembly">
@@ -218,6 +232,75 @@ Balochistan Updates ایک غیرجانبدار معلوماتی پلیٹ فار
 <p id="message"></p>
 </section>
 
+<!-- ADMIN PANEL -->
+<section class="card" id="admin">
+<h2>🔐 Admin Panel</h2>
+
+<div id="loginBox">
+<p>صرف مجاز ایڈمن یہاں لاگ ان کر سکتا ہے۔</p>
+
+<label>Email</label>
+<input type="email" id="email" placeholder="Admin Email">
+
+<label>Password</label>
+<input type="password" id="password" placeholder="Password">
+
+<button class="btn facebook" id="loginBtn" onclick="login()">Login</button>
+<div id="loginMessage" class="status"></div>
+</div>
+
+<div id="adminBox" class="hidden">
+
+<h3>✅ Admin Dashboard</h3>
+<p id="adminEmail"></p>
+
+<div class="notice">
+آپ یہاں سے نئی خبر شائع، پرانی خبر Edit یا Delete کر سکتے ہیں۔
+</div>
+
+<hr>
+
+<h3 id="formTitle">✍️ نئی خبر شائع کریں</h3>
+
+<label>خبر کا عنوان / Title</label>
+<input type="text" id="postTitle" placeholder="خبر کا عنوان لکھیں">
+
+<label>خبر کی قسم</label>
+<select id="category">
+<option value="تازہ خبر">تازہ خبر</option>
+<option value="بلوچستان اسمبلی">بلوچستان اسمبلی</option>
+<option value="قومی اسمبلی و سینیٹ">قومی اسمبلی و سینیٹ</option>
+<option value="ضلعی خبریں">ضلعی خبریں</option>
+<option value="تعلیم">تعلیم</option>
+<option value="صحت">صحت</option>
+<option value="سرکاری نوٹس">سرکاری نوٹس</option>
+</select>
+
+<label>زبان</label>
+<select id="language">
+<option value="Urdu">اردو</option>
+<option value="English">English</option>
+</select>
+
+<label>تصویر کا لنک (اختیاری)</label>
+<input type="url" id="postImage" placeholder="https://example.com/image.jpg">
+
+<label>خبر کی مکمل تفصیل / Content</label>
+<textarea id="postContent" placeholder="اپنی مکمل خبر یہاں لکھیں..."></textarea>
+
+<button class="btn" id="publishBtn" onclick="publishPost()">🟢 Publish Post</button>
+<button class="btn gold hidden" id="cancelEdit" onclick="cancelEditing()">Cancel Edit</button>
+
+<div id="adminMessage" class="status"></div>
+
+<hr>
+<h3>📋 تمام پوسٹس کا انتظام</h3>
+<div id="adminPosts">پوسٹس لوڈ ہو رہی ہیں...</div>
+
+<button class="btn" onclick="logout()" style="background:#d82929">Logout</button>
+</div>
+</section>
+
 </div>
 
 <footer>
@@ -227,26 +310,452 @@ Balochistan Updates ایک غیرجانبدار معلوماتی پلیٹ فار
 <p>© 2026 Balochistan Updates. All Rights Reserved.</p>
 </footer>
 
+<!-- FIREBASE LIBRARIES -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
 <script>
+
+// =================================
+// YOUR EXISTING FIREBASE CONFIG
+// =================================
+
+const firebaseConfig = {
+ apiKey: "AIzaSyB-tnk46jWZ60in0j4jJPidsdVV64MZL7o",
+ authDomain: "balochistan-updates.firebaseapp.com",
+ projectId: "balochistan-updates",
+ storageBucket: "balochistan-updates.firebasestorage.app",
+ messagingSenderId: "162881382204",
+ appId: "1:162881382204:web:75337562d3c05d44712039",
+ measurementId: "G-WZ37DSTN93"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const postsRef = db.collection("posts");
+const adminsRef = db.collection("admins");
+
+const ADMIN_UID = "3TVwxjA3YXQMR0Y7bVR5wuUX9tZ2";
+
+let isAdmin = false;
+let editingId = null;
+let currentPosts = [];
+
+// =================================
+// HELPER FUNCTIONS
+// =================================
+
+function showMessage(id,message){
+ document.getElementById(id).textContent=message;
+}
+
+function escapeHTML(value){
+ return String(value ?? "").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ })[c]);
+}
+
+function getDate(value){
+ if(!value)return "";
+ try{
+  if(value.toDate)return value.toDate().toLocaleString();
+  if(value instanceof Date)return value.toLocaleString();
+  return "";
+ }catch(e){return ""}
+}
+
+function getPostTitle(p){
+ return p.title || p.heading || p.name || "خبر";
+}
+
+function getPostContent(p){
+ return p.content || p.body || p.description || p.text || "";
+}
+
+// =================================
+// LOAD FIREBASE POSTS
+// =================================
+
+async function loadPosts(){
+
+ const publicBox=document.getElementById("posts");
+
+ try{
+
+  let snapshot;
+
+  if(isAdmin){
+   snapshot=await postsRef.get();
+  }else{
+   snapshot=await postsRef.where("status","==","published").get();
+  }
+
+  currentPosts=[];
+
+  snapshot.forEach(doc=>{
+   currentPosts.push({id:doc.id,...doc.data()});
+  });
+
+  currentPosts.sort((a,b)=>{
+   const x=a.createdAt?.toMillis ? a.createdAt.toMillis():0;
+   const y=b.createdAt?.toMillis ? b.createdAt.toMillis():0;
+   return y-x;
+  });
+
+  const published=currentPosts.filter(p=>
+   p.status==="published" || p.status==="Published"
+  );
+
+  publicBox.innerHTML="";
+
+  if(published.length===0){
+   publicBox.innerHTML="<p>ابھی کوئی خبر شائع نہیں ہوئی۔</p>";
+  }
+
+  published.forEach(p=>{
+
+   const article=document.createElement("article");
+   article.className="post";
+
+   const title=document.createElement("h3");
+   title.textContent=getPostTitle(p);
+
+   const meta=document.createElement("div");
+   meta.className="post-meta";
+   meta.textContent=
+    (p.category || "خبر")+" • "+
+    (p.language || "")+" • "+
+    getDate(p.createdAt);
+
+   article.append(title,meta);
+
+   if(p.imageUrl || p.image){
+    const img=document.createElement("img");
+    img.className="post-image";
+    img.src=p.imageUrl || p.image;
+    img.alt=getPostTitle(p);
+    img.loading="lazy";
+    article.appendChild(img);
+   }
+
+   const content=document.createElement("div");
+   content.className="post-content";
+   content.textContent=getPostContent(p);
+
+   article.appendChild(content);
+   publicBox.appendChild(article);
+  });
+
+  if(isAdmin)renderAdminPosts();
+
+  document.getElementById("connection").textContent=
+   "✅ Firebase سے رابطہ کامیاب ہے۔";
+
+ }catch(error){
+
+  document.getElementById("connection").textContent=
+   "Firebase Error: "+error.message;
+
+  publicBox.textContent=
+   "خبریں لوڈ نہیں ہو سکیں۔ Firebase Rules چیک کریں۔";
+ }
+}
+
+// =================================
+// ADMIN LOGIN
+// =================================
+
+async function login(){
+
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+
+ if(!email || !password){
+  showMessage("loginMessage","Email اور Password درج کریں۔");
+  return;
+ }
+
+ try{
+
+  document.getElementById("loginBtn").disabled=true;
+
+  await auth.signInWithEmailAndPassword(email,password);
+
+ }catch(error){
+
+  showMessage("loginMessage","Login Error: "+error.message);
+  document.getElementById("loginBtn").disabled=false;
+ }
+}
+
+// =================================
+// CHECK ADMIN PERMISSION
+// =================================
+
+auth.onAuthStateChanged(async user=>{
+
+ isAdmin=false;
+
+ if(user){
+
+  try{
+
+   const adminDoc=await adminsRef.doc(user.uid).get();
+
+   if(
+    user.uid===ADMIN_UID &&
+    adminDoc.exists &&
+    adminDoc.data().role==="admin"
+   ){
+
+    isAdmin=true;
+
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("adminBox").classList.remove("hidden");
+    document.getElementById("adminEmail").textContent=user.email || "";
+
+    await loadPosts();
+
+   }else{
+
+    await auth.signOut();
+
+    document.getElementById("loginBox").classList.remove("hidden");
+    document.getElementById("adminBox").classList.add("hidden");
+
+    showMessage("loginMessage","آپ کو Admin کی اجازت حاصل نہیں ہے۔");
+
+    await loadPosts();
+   }
+
+  }catch(error){
+
+   showMessage("loginMessage","Admin verification error: "+error.message);
+   await auth.signOut();
+  }
+
+ }else{
+
+  document.getElementById("loginBox").classList.remove("hidden");
+  document.getElementById("adminBox").classList.add("hidden");
+  document.getElementById("loginBtn").disabled=false;
+
+  await loadPosts();
+ }
+
+});
+
+// =================================
+// PUBLISH NEW POST / UPDATE POST
+// =================================
+
+async function publishPost(){
+
+ if(!isAdmin){
+  alert("Admin Login ضروری ہے۔");
+  return;
+ }
+
+ const title=document.getElementById("postTitle").value.trim();
+ const content=document.getElementById("postContent").value.trim();
+ const category=document.getElementById("category").value;
+ const language=document.getElementById("language").value;
+ const imageUrl=document.getElementById("postImage").value.trim();
+
+ if(!title || !content){
+  showMessage("adminMessage","عنوان اور خبر کی تفصیل لازمی لکھیں۔");
+  return;
+ }
+
+ try{
+
+  const data={
+   title:title,
+   content:content,
+   category:category,
+   language:language,
+   imageUrl:imageUrl,
+   status:"published",
+   updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  if(editingId){
+
+   await postsRef.doc(editingId).update(data);
+
+   showMessage("adminMessage","خبر کامیابی سے اپڈیٹ ہوگئی!");
+
+  }else{
+
+   data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
+
+   await postsRef.add(data);
+
+   showMessage("adminMessage","خبر کامیابی سے شائع ہوگئی!");
+  }
+
+  cancelEditing();
+  await loadPosts();
+
+ }catch(error){
+
+  showMessage("adminMessage","Publish Error: "+error.message);
+ }
+}
+
+// =================================
+// ADMIN POSTS LIST
+// =================================
+
+function renderAdminPosts(){
+
+ const box=document.getElementById("adminPosts");
+ box.innerHTML="";
+
+ if(currentPosts.length===0){
+  box.textContent="کوئی پوسٹ موجود نہیں۔";
+  return;
+ }
+
+ currentPosts.forEach(p=>{
+
+  const div=document.createElement("div");
+  div.className="post";
+
+  const heading=document.createElement("h3");
+  heading.textContent=getPostTitle(p);
+
+  const details=document.createElement("p");
+  details.textContent=
+   (p.category || "")+" | "+(p.status || "نامعلوم");
+
+  const actions=document.createElement("div");
+  actions.className="admin-actions";
+
+  const edit=document.createElement("button");
+  edit.className="btn gold";
+  edit.textContent="✏️ Edit";
+  edit.onclick=()=>editPost(p.id);
+
+  const del=document.createElement("button");
+  del.className="btn";
+  del.style.background="#e32727";
+  del.textContent="🗑️ Delete";
+  del.onclick=()=>deletePost(p.id);
+
+  actions.append(edit,del);
+  div.append(heading,details,actions);
+  box.appendChild(div);
+ });
+}
+
+// =================================
+// EDIT POST
+// =================================
+
+function editPost(id){
+
+ const p=currentPosts.find(x=>x.id===id);
+ if(!p)return;
+
+ editingId=id;
+
+ document.getElementById("postTitle").value=getPostTitle(p);
+ document.getElementById("postContent").value=getPostContent(p);
+ document.getElementById("category").value=p.category || "تازہ خبر";
+ document.getElementById("language").value=p.language || "Urdu";
+ document.getElementById("postImage").value=p.imageUrl || p.image || "";
+
+ document.getElementById("formTitle").textContent="✏️ خبر میں تبدیلی";
+ document.getElementById("publishBtn").textContent="Update Post";
+ document.getElementById("cancelEdit").classList.remove("hidden");
+
+ document.getElementById("admin").scrollIntoView({behavior:"smooth"});
+}
+
+// =================================
+// CANCEL EDIT
+// =================================
+
+function cancelEditing(){
+
+ editingId=null;
+
+ document.getElementById("postTitle").value="";
+ document.getElementById("postContent").value="";
+ document.getElementById("postImage").value="";
+ document.getElementById("category").selectedIndex=0;
+ document.getElementById("language").selectedIndex=0;
+
+ document.getElementById("formTitle").textContent="✍️ نئی خبر شائع کریں";
+ document.getElementById("publishBtn").textContent="🟢 Publish Post";
+ document.getElementById("cancelEdit").classList.add("hidden");
+}
+
+// =================================
+// DELETE POST
+// =================================
+
+async function deletePost(id){
+
+ if(!isAdmin)return;
+
+ if(!confirm("کیا آپ واقعی یہ خبر Delete کرنا چاہتے ہیں؟"))return;
+
+ try{
+
+  await postsRef.doc(id).delete();
+
+  showMessage("adminMessage","پوسٹ Delete ہوگئی۔");
+
+  await loadPosts();
+
+ }catch(error){
+
+  showMessage("adminMessage","Delete Error: "+error.message);
+ }
+}
+
+// =================================
+// LOGOUT
+// =================================
+
+async function logout(){
+ await auth.signOut();
+ cancelEditing();
+}
+
+// =================================
+// FACEBOOK COPY
+// =================================
+
 function copyLink(){
+
  const link="https://www.facebook.com/share/19ghWbUs7c/";
+
  if(navigator.clipboard && window.isSecureContext){
+
   navigator.clipboard.writeText(link).then(()=>{
    document.getElementById("message").innerText="✅ لنک کاپی ہوگیا!";
-  }).catch(()=>fallback(link));
- }else{fallback(link);}
+  }).catch(()=>fallbackCopy(link));
+
+ }else{
+  fallbackCopy(link);
+ }
 }
-function fallback(link){
+
+function fallbackCopy(link){
+
  const el=document.createElement("textarea");
  el.value=link;
  document.body.appendChild(el);
  el.select();
- document.execCommand("copy");
- el.remove();
- document.getElementById("message").innerText="✅ لنک کاپی ہوگیا!";
-}
-</script>
-
-</body>
- </html>
- 
+ document.execComm
