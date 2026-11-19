@@ -1,2 +1,10 @@
-# Balochistan-updates-
-Balochistan Updates is an independent news and information platform sharing the latest news, government announcements, assembly statements, Senate updates, district news, public notices, and important developments from across Balochistan, Pakistan. Urdu &amp; English Updates.
+👑 H KHAN KING 👑
+
+A name is not just an identity; it's a statement.
+
+No competition, no arrogance, no fear.
+Respect everyone, stand for truth, and never compromise on principles.
+
+My Style, My Identity, My Rules!
+
+🔥 H KHAN KING — Born to Be Different! 👑
